@@ -28,4 +28,9 @@ public class Shooting : MonoBehaviour
         // Destroys bullet after destroyTime has passed
         Destroy(gameObject, destroyTime);
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Destroy(gameObject);
+        Destroy(other.gameObject);
+    }
 }
