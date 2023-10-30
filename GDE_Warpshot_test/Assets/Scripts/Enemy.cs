@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private float speed = 50f;
+    private float speed = 10f;
     private Vector2 direction;
     private Rigidbody2D enemyRb;
     private GameObject player;
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // Enemies move towards player
         direction = player.transform.position - transform.position;
