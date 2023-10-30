@@ -15,7 +15,7 @@ public class Aiming : MonoBehaviour
     void Start()
     {
         cursorHotspot = new Vector2 (crosshair.width / 2, crosshair.height / 2);
-        Cursor.SetCursor(crosshair, cursorHotspot, CursorMode.Auto);
+        Cursor.SetCursor(crosshair, cursorHotspot, CursorMode.ForceSoftware);
     }
 
     void Update()
