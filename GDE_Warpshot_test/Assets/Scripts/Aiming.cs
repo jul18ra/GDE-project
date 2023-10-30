@@ -5,26 +5,21 @@ using UnityEngine;
 
 public class Aiming : MonoBehaviour
 {
+    public Texture2D crosshair;
+    private Vector2 cursorHotspot;
     public Camera mainCam;
     private Vector3 mousePos;
     public GameObject projectilePrefab;
     private float fireRate = 0.2f;
     private float timer;
-
+    void Start()
+    {
+        cursorHotspot = new Vector2 (crosshair.width / 2, crosshair.height / 2);
+        Cursor.SetCursor(crosshair, cursorHotspot, CursorMode.Auto);
+    }
 
     void Update()
     {
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-
-        // Calculation of vector that points from player to mouse position
-        Vector2 aimDir = mousePos - transform.position;
-
-        // Angle of rotation + convertion from rad to deg
-        float rotation = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-
-        // Returns a rotation that rotates "rotation" degrees around the z axis
-        transform.rotation = Quaternion.Euler(0, 0, rotation);
-
         timer += Time.deltaTime;
 
         // Spawns a bullet
@@ -33,7 +28,6 @@ public class Aiming : MonoBehaviour
             Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             timer = 0;
         }
-
 
     }
 

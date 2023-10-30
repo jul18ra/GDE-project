@@ -4,28 +4,25 @@ using UnityEngine;
 
 public class Teleportation : MonoBehaviour
 {
+    public Camera mainCam;
     public Rigidbody2D playerRb;
     private GameObject player;
-
-    private GameObject crosshair;
-    private Vector3 crosshairPos;
+    private Vector3 mousePos;
 
     // Start is called before the first frame update
     void Start()
     {
-        crosshair = GameObject.Find("Crosshair");
         player = GameObject.Find("Player");
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        crosshairPos = crosshair.transform.position;
+        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetMouseButtonDown(1))
         {
-            player.transform.position = crosshairPos;
+            player.transform.position = mousePos;
         }
     }
 }
