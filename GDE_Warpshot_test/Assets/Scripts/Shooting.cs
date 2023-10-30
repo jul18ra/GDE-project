@@ -5,11 +5,12 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
 
-    private Camera mainCam;
+    public Camera mainCam;
     private Vector3 mousePos;
     public Rigidbody2D rb;
-    public float force;
-    public float destroyTime;
+    private float force = 30f;
+    private float destroyTime = 2.5f;
+    public Vector2 aimDir;
 
     // Start is called before the first frame update
     void Start()
@@ -18,12 +19,13 @@ public class Shooting : MonoBehaviour
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();    
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 aimDir = mousePos - transform.position;
-        rb.velocity = new Vector2(aimDir.x, aimDir.y).normalized * force; 
+        rb.velocity = new Vector2(aimDir.x, aimDir.y).normalized * force;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Destroys bullet after destroyTime has passed
         Destroy(gameObject, destroyTime);
     }
 }
