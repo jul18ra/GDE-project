@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", 2f, 2f);
+        InvokeRepeating("SpawnEnemy", 1.5f, 1.5f);
     }
 
     void SpawnEnemy()

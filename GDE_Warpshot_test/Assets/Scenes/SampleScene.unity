@@ -265,8 +265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88db296458a38ca4994d60c8024f16d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 519420031}
-  playerRb: {fileID: 486670129}
 --- !u!114 &486670134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +278,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshair: {fileID: 2800000, guid: 550696e1bf5d7c04993a9b390584f183, type: 3}
-  mainCam: {fileID: 519420031}
   projectilePrefab: {fileID: 7328392015338922199, guid: a21d353595df2e54683dc705b45e7eb2, type: 3}
 --- !u!1 &519420028
 GameObject:

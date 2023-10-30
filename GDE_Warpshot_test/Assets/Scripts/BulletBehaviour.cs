@@ -1,33 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
-public class Shooting : MonoBehaviour
+public class BulletBehaviour : MonoBehaviour
+
 {
-
-    public Camera mainCam;
+    private Camera mainCam;
     private Vector3 mousePos;
-    public Rigidbody2D rb;
+    private Rigidbody2D bulletRb;
     private float force = 30f;
     private float destroyTime = 2.5f;
-    public Vector2 aimDir;
+    private Vector2 aimDir;
 
-    // Start is called before the first frame update
     void Start()
     {
-        // FIX CAMERA + try to understand what you've written lol
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();    
+        bulletRb = gameObject.GetComponent<Rigidbody2D>();
+
+        mainCam = Camera.main;
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 aimDir = mousePos - transform.position;
-        rb.velocity = new Vector2(aimDir.x, aimDir.y).normalized * force;
+
+        aimDir = mousePos - transform.position;
+        bulletRb.velocity = new Vector2(aimDir.x, aimDir.y).normalized * force;
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Destroys bullet after destroyTime has passed
         Destroy(gameObject, destroyTime);
     }
+    
+    // Destroys bullet and enemy on collision
     void OnTriggerEnter2D(Collider2D other)
     {
         Destroy(gameObject);
