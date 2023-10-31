@@ -135,8 +135,8 @@ GameObject:
   - component: {fileID: 486670130}
   - component: {fileID: 486670129}
   - component: {fileID: 486670132}
-  - component: {fileID: 486670133}
   - component: {fileID: 486670134}
+  - component: {fileID: 486670135}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -251,20 +251,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d464e86c63bb56447922e1a888712de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 486670129}
+  playerRb: {fileID: 0}
   speed: 10
---- !u!114 &486670133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486670128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88db296458a38ca4994d60c8024f16d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &486670134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +270,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crosshair: {fileID: 2800000, guid: 550696e1bf5d7c04993a9b390584f183, type: 3}
   projectilePrefab: {fileID: 7328392015338922199, guid: a21d353595df2e54683dc705b45e7eb2, type: 3}
+--- !u!114 &486670135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486670128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b956438e4ae37ef4e9cd7609d9d02c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitLayers:
+    m_Bits: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

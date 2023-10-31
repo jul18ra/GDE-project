@@ -11,7 +11,6 @@ public class EnemySpawner : MonoBehaviour
     private float spawnStartTime = 5f;
     private float spawnRepeatRate = 1.5f;
 
-    // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("SpawnEnemy", spawnStartTime, spawnRepeatRate);

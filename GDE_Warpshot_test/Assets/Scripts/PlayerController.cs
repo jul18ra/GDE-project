@@ -5,7 +5,7 @@ using UnityEngine.XR;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    public Rigidbody2D playerRb;
     public float speed = 5f;
     private Vector2 movement;
     private Vector3 mousePos;
@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        // Teleports player to cursor position
         if (Input.GetMouseButtonDown(1))
         {
             gameObject.transform.position = mousePos;
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Standard player movement
-        rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * movement.normalized);
+        playerRb.MovePosition(playerRb.position + speed * Time.fixedDeltaTime * movement.normalized);
 
     }
 }
