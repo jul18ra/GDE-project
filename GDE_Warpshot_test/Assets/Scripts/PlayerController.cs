@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float speed = 5f;
-    Vector2 movement;
+    private Vector2 movement;
+    private Vector3 mousePos;
 
     public LayerMask hitLayers;
 
@@ -16,6 +17,13 @@ public class PlayerController : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            gameObject.transform.position = mousePos;
+        }
+
     }
 
     void FixedUpdate()
@@ -23,14 +31,6 @@ public class PlayerController : MonoBehaviour
         // Standard player movement
         rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * movement.normalized);
 
-        Ray mousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        // Player teleports to cursor
-        if (Physics.Raycast(mousePos, out hit, Mathf.Infinity, hitLayers))
-        {
-            gameObject.transform.position = hit.point;
-        }
     }
 }
 

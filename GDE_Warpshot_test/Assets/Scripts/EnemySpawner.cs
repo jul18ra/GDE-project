@@ -8,11 +8,13 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public GameObject enemySpawner;
+    private float spawnStartTime = 5f;
+    private float spawnRepeatRate = 1.5f;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", 1.5f, 1.5f);
+        InvokeRepeating("SpawnEnemy", spawnStartTime, spawnRepeatRate);
     }
 
     void SpawnEnemy()
