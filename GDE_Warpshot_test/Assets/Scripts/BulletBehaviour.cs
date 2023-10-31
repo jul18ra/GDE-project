@@ -6,7 +6,6 @@ using UnityEngine.XR;
 public class BulletBehaviour : MonoBehaviour
 
 {
-    private Camera mainCam;
     private Vector3 mousePos;
     private Rigidbody2D bulletRb;
     private float force = 30f;
@@ -17,8 +16,7 @@ public class BulletBehaviour : MonoBehaviour
     {
         bulletRb = gameObject.GetComponent<Rigidbody2D>();
 
-        mainCam = Camera.main;
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         aimDir = mousePos - transform.position;
         bulletRb.velocity = new Vector2(aimDir.x, aimDir.y).normalized * force;

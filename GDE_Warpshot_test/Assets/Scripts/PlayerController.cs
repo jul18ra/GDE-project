@@ -5,10 +5,11 @@ using UnityEngine.XR;
 
 public class PlayerController : MonoBehaviour
 {
-
     public Rigidbody2D rb;
     public float speed = 5f;
     Vector2 movement;
+
+    public LayerMask hitLayers;
 
     void Update()
     {
@@ -19,6 +20,17 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * movement);
+        // Standard player movement
+        rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * movement.normalized);
+
+        Ray mousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        // Player teleports to cursor
+        if (Physics.Raycast(mousePos, out hit, Mathf.Infinity, hitLayers))
+        {
+            gameObject.transform.position = hit.point;
+        }
     }
 }
+
