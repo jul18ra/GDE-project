@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed = 10f;
     private float teleportSpeed = 30f;
 
+    private Vector3 previousPos;
     private Vector2 movement;
     private Vector3 mousePos;
 
@@ -54,6 +55,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             teleporting = false;
+            previousPos = transform.position;
         }
 
         if (!flashing & !teleporting)
@@ -77,5 +79,10 @@ public class PlayerController : MonoBehaviour
     public bool getIsTeleporting()
     {
         return teleporting;
+    }
+
+    public Vector3 getPreviousPos()
+    {
+        return previousPos;
     }
 }
