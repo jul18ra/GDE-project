@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     private int currentHealth;
 
     private bool teleporting;
+    private bool flashing;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +36,6 @@ public class PlayerHealth : MonoBehaviour
     {
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         teleporting = playerController.getIsTeleporting();
-
-        Debug.Log(teleporting);
     }
 
     void TakeDamage(int damage)
@@ -57,14 +56,20 @@ public class PlayerHealth : MonoBehaviour
         if(!teleporting)
         {
             TakeDamage(2);
-
         }
     }
 
     IEnumerator FlashRed()
     {
+        flashing = true;
         playerSprite.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         playerSprite.color = Color.white;
+        flashing = false;
+    }
+
+    public bool getIsFlashing()
+    {
+        return flashing;
     }
 }

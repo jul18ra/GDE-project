@@ -1,15 +1,19 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using UnityEditor.Profiling;
 using UnityEngine;
 using UnityEngine.XR;
 using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class PlayerController : MonoBehaviour
 {
+    private PlayerHealth playerHealth;
+
     public Rigidbody2D playerRb;
     private float moveSpeed = 10f;
-    private float teleportSpeed = 150f;
+    private float teleportSpeed = 30f;
 
     private Vector2 movement;
     private Vector3 mousePos;
@@ -18,14 +22,19 @@ public class PlayerController : MonoBehaviour
     private Color playerColor;
 
     private bool teleporting;
+    private bool flashing;
 
     private void Start()
     {
-       playerSprite = gameObject.GetComponent<SpriteRenderer>();
+        playerSprite = gameObject.GetComponent<SpriteRenderer>();
+        playerHealth = gameObject.GetComponent<PlayerHealth>();
+
     }
 
     void Update()
     {
+        flashing = playerHealth.getIsFlashing();
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
@@ -45,8 +54,11 @@ public class PlayerController : MonoBehaviour
         else
         {
             teleporting = false;
-            playerSprite.color = new Color(1f, 1f, 1f, 1f);
+        }
 
+        if (!flashing & !teleporting)
+        {
+            playerSprite.color = new Color(1f, 1f, 1f, 1f);
         }
 
     }
