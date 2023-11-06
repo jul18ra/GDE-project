@@ -7,17 +7,15 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     private GameObject enemy;
+    private SpriteRenderer enemySprite;
+
     private GameObject textObj;
 
     private TMP_Text healthText;
 
-    private int maxHealth = 10;
+    private int maxHealth = 8;
     private int currentHealth;
-    //private int damage = 2;
-    private bool isDead;
 
-    private Color origEnemyColor;
-    private Color modifEnemyColor;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
         healthText = textObj.GetComponent<TMP_Text>();
         healthText.SetText($"{currentHealth}/{maxHealth}");
 
-        origEnemyColor = gameObject.GetComponent<SpriteRenderer>().color;
+        enemySprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -41,21 +39,18 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= damage;
         healthText.SetText($"{currentHealth}/{maxHealth}");
-        ChangeColor(0.7f, Color.red);
+        StartCoroutine(FlashRed());
 
         if(currentHealth <= 0) 
         {
-            isDead = true;
             Destroy(enemy.gameObject);
         }
     }
 
-    void ChangeColor(float transVal, Color color)
+    IEnumerator FlashRed()
     {
-        modifEnemyColor = origEnemyColor;
-
-        modifEnemyColor.a = transVal;
-        modifEnemyColor = color;
-        enemy.GetComponent<SpriteRenderer>().color = modifEnemyColor;
+        enemySprite.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        enemySprite.color = Color.white;
     }
 }
