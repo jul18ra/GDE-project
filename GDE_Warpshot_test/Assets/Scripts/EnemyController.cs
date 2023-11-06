@@ -25,25 +25,27 @@ public class EnemyController : MonoBehaviour
     {
         teleporting = player.GetComponent<PlayerController>().getIsTeleporting();
         previousPos = player.GetComponent<PlayerController>().getPreviousPos();
-
-        Debug.Log(teleporting);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        playerDirection = (player.transform.position - transform.position).normalized;
-        currentDirection = (previousPos- transform.position).normalized;
+        playerDirection = player.transform.position - transform.position;
+        currentDirection = previousPos - transform.position;
 
         if (teleporting)
         {   
             // Enemies move where the player last was
-            enemyRb.MovePosition((Vector2)transform.position + (speed * Time.deltaTime * currentDirection));
+            enemyRb.MovePosition((Vector2)transform.position + (speed * Time.deltaTime * currentDirection.normalized));
         }
         else
         {
             // Enemies move towards player
-            enemyRb.MovePosition((Vector2)transform.position + (speed * Time.deltaTime * playerDirection));
+            enemyRb.MovePosition((Vector2)transform.position + (speed * Time.deltaTime * playerDirection.normalized));
+
         }
+
+        //enemyRb.velocity = enemyRb.velocity.normalized * speed;
+
     }
 }
