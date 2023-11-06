@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6055640398503294810}
   - component: {fileID: 3466591689320826238}
   - component: {fileID: 6088461389627556690}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 6622318761391915518}
   - component: {fileID: -8960835322871574496}
   - component: {fileID: 8611745405560428800}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -246,8 +246,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -330841503
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1002add9d1a2ddb40983d57429a69135, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

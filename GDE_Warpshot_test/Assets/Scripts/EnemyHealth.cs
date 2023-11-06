@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private GameObject enemy;
     private SpriteRenderer enemySprite;
 
     private GameObject textObj;
@@ -29,12 +28,6 @@ public class EnemyHealth : MonoBehaviour
         enemySprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        enemy = gameObject;
-    }
-
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -43,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
 
         if(currentHealth <= 0) 
         {
-            Destroy(enemy.gameObject);
+            Destroy(gameObject);
         }
     }
 
