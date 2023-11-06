@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,13 +13,15 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 movement;
     private Vector3 mousePos;
+
+    private SpriteRenderer playerSprite;
     private Color playerColor;
 
     private bool teleporting;
 
     private void Start()
     {
-       //playerColor = gameObject.GetComponent<SpriteRenderer>().color;
+       playerSprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -36,13 +39,14 @@ public class PlayerController : MonoBehaviour
         // Teleports player to cursor position
         if (teleporting & transform.position != mousePos)
         {
-            ChangeTransparency(0.5f);
+            playerSprite.color = new Color(1f, 1f, 1f, 0.5f);
             transform.position = Vector3.MoveTowards(transform.position, mousePos, Time.deltaTime * teleportSpeed);
         }
         else
         {
             teleporting = false;
-            ChangeTransparency(1);
+            playerSprite.color = new Color(1f, 1f, 1f, 1f);
+
         }
 
     }
@@ -57,11 +61,9 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    void ChangeTransparency(float transVal)
-    {
-        playerColor = gameObject.GetComponent<SpriteRenderer>().color;
-        playerColor.a = transVal;
-        gameObject.GetComponent<SpriteRenderer>().color = playerColor;
-    }
 
+    public bool getIsTeleporting()
+    {
+        return teleporting;
+    }
 }
