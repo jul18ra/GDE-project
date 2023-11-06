@@ -2,27 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D playerRb;
-    public float speed = 5f;
+    private float moveSpeed = 10f;
+    private float teleportSpeed = 150f;
+
     private Vector2 movement;
     private Vector3 mousePos;
+    private Color playerColor;
 
-    public LayerMask hitLayers;
+    private bool teleporting;
+
+    private void Start()
+    {
+       //playerColor = gameObject.GetComponent<SpriteRenderer>().color;
+    }
 
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // Teleports player to cursor position
+        // Teleports player when right click 
         if (Input.GetMouseButtonDown(1))
         {
-            gameObject.transform.position = mousePos;
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            teleporting = true;
+        }
+
+        // Teleports player to cursor position
+        if (teleporting & transform.position != mousePos)
+        {
+            ChangeTransparency(0.5f);
+            transform.position = Vector3.MoveTowards(transform.position, mousePos, Time.deltaTime * teleportSpeed);
+        }
+        else
+        {
+            teleporting = false;
+            ChangeTransparency(1);
         }
 
     }
@@ -30,8 +50,14 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Standard player movement
-        playerRb.MovePosition(playerRb.position + speed * Time.fixedDeltaTime * movement.normalized);
+        playerRb.MovePosition(playerRb.position + moveSpeed * Time.fixedDeltaTime * movement.normalized);
 
     }
-}
+    void ChangeTransparency(float transVal)
+    {
+        playerColor = gameObject.GetComponent<SpriteRenderer>().color;
+        playerColor.a = transVal;
+        gameObject.GetComponent<SpriteRenderer>().color = playerColor;
+    }
 
+}
