@@ -50,7 +50,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Standard player movement
-        playerRb.MovePosition(playerRb.position + moveSpeed * Time.fixedDeltaTime * movement.normalized);
+        if(!teleporting)
+        {
+            playerRb.MovePosition(playerRb.position + moveSpeed * Time.fixedDeltaTime * movement.normalized);
+
+        }
 
     }
     void ChangeTransparency(float transVal)
