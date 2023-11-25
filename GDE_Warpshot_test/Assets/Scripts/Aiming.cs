@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Aiming : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Aiming : MonoBehaviour
     public GameObject projectilePrefab;
     private float fireRate = 0.2f;
     private float timer;
+
     void Start()
     {
         cursorHotspot = new Vector2 (crosshair.width / 2, crosshair.height / 2);
