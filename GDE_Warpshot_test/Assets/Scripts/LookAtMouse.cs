@@ -7,7 +7,6 @@ public class LookAtMouse : MonoBehaviour
 {
     public GameObject player;
 
-    private float scale = 0.7f;
     private Vector3 defScale;
 
     private Vector2 lookDir;
@@ -18,7 +17,7 @@ public class LookAtMouse : MonoBehaviour
 
     private void Start()
     {
-        defScale = new Vector3(scale, scale, scale);
+        defScale = player.transform.localScale;
     }
     void Update()
     {
