@@ -8,9 +8,9 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     private PlayerController playerController;
-    private SpriteRenderer playerSprite;
+    //private SpriteRenderer playerSprite;
 
-    private GameObject enemy;
+    public GameObject enemy;
 
     private TMP_Text healthText;
 
@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
     private int currentHealth;
 
     private bool teleporting;
-    private bool flashing;
+    //private bool flashing;
 
     // Start is called before the first frame update
     void Start()
@@ -28,13 +28,13 @@ public class PlayerHealth : MonoBehaviour
         healthText = GameObject.Find("HealthText").GetComponent<TMP_Text>();
         healthText.SetText($"Health: {currentHealth}");
 
-        playerSprite = gameObject.GetComponent<SpriteRenderer>();
+        //playerSprite = gameObject.GetComponent<SpriteRenderer>();
         playerController = gameObject.GetComponent<PlayerController>();
     }
 
     void Update()
     {
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        //enemy = GameObject.FindGameObjectWithTag("Enemy");
         teleporting = playerController.getIsTeleporting();
     }
 
@@ -42,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         healthText.SetText($"Health: {currentHealth}");
-        StartCoroutine(FlashRed());
+        //StartCoroutine(FlashRed());
 
         if (currentHealth <= 0)
         {
@@ -59,7 +59,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    IEnumerator FlashRed()
+    /* IEnumerator FlashRed()
     {
         flashing = true;
         playerSprite.color = Color.red;
@@ -71,5 +71,5 @@ public class PlayerHealth : MonoBehaviour
     public bool getIsFlashing()
     {
         return flashing;
-    }
+    }*/
 }

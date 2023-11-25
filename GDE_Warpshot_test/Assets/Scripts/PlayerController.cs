@@ -16,10 +16,10 @@ public class PlayerController : MonoBehaviour
     private float teleportSpeed = 30f;
 
     private Vector3 previousPos;
-    private Vector2 movement;
+    private Vector3 movement;
     private Vector3 mousePos;
 
-    private SpriteRenderer playerSprite;
+    //private SpriteRenderer playerSprite;
     private Color playerColor;
 
     private bool teleporting;
@@ -27,14 +27,14 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        playerSprite = gameObject.GetComponent<SpriteRenderer>();
+        //playerSprite = gameObject.GetComponent<SpriteRenderer>();
         playerHealth = gameObject.GetComponent<PlayerHealth>();
 
     }
 
     void Update()
     {
-        flashing = playerHealth.getIsFlashing();
+        //flashing = playerHealth.getIsFlashing();
 
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         // Teleports player to cursor position
         if (teleporting & transform.position != mousePos)
         {
-            playerSprite.color = new Color(1f, 1f, 1f, 0.5f);
+            //playerSprite.color = new Color(1f, 1f, 1f, 0.5f);
             transform.position = Vector3.MoveTowards(transform.position, mousePos, Time.deltaTime * teleportSpeed);
         }
         else
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
         if (!flashing & !teleporting)
         {
-            playerSprite.color = new Color(1f, 1f, 1f, 1f);
+            //playerSprite.color = new Color(1f, 1f, 1f, 1f);
         }
 
     }
@@ -70,7 +70,8 @@ public class PlayerController : MonoBehaviour
         // Standard player movement
         if(!teleporting)
         {
-            playerRb.MovePosition(playerRb.position + moveSpeed * Time.fixedDeltaTime * movement.normalized);
+            //playerRb.MovePosition(playerRb.position + moveSpeed * Time.fixedDeltaTime * movement.normalized);
+            transform.Translate(moveSpeed * Time.fixedDeltaTime * movement.normalized);
 
         }
 
