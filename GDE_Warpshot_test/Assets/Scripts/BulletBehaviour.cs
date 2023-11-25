@@ -17,10 +17,17 @@ public class BulletBehaviour : MonoBehaviour
     {
         bulletRb = gameObject.GetComponent<Rigidbody2D>();
 
+        
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         aimDir = mousePos - transform.position;
-        bulletRb.velocity = new Vector2(aimDir.x, aimDir.y).normalized * force;
+  
+        bulletRb.AddForce(aimDir.normalized * force, ForceMode2D.Impulse);
+
+    }
+
+    private void FixedUpdate()
+    {
 
     }
 

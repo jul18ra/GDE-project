@@ -17,7 +17,7 @@ public class PlayerHealth : MonoBehaviour
     private int maxHealth = 10;
     private int currentHealth;
 
-    private bool teleporting;
+    //private bool teleporting;
     //private bool flashing;
 
     // Start is called before the first frame update
@@ -34,8 +34,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        //enemy = GameObject.FindGameObjectWithTag("Enemy");
-        teleporting = playerController.getIsTeleporting();
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
     void TakeDamage(int damage)
@@ -53,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D enemy)
     {
-        if(!teleporting)
+        if(!playerController.Teleporting)
         {
             TakeDamage(2);
         }

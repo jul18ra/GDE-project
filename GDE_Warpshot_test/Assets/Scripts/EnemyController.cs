@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    private bool teleporting;
-    private Vector3 previousPos;
-
+    private PlayerController PlayerController;
     private float speed = 8f;
     private Vector2 playerDirection;
     private Vector2 currentDirection;
@@ -21,19 +19,15 @@ public class EnemyController : MonoBehaviour
         player = GameObject.Find("Player");
     }
 
-    void Update()
-    {
-        teleporting = player.GetComponent<PlayerController>().getIsTeleporting();
-        previousPos = player.GetComponent<PlayerController>().getPreviousPos();
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
-        playerDirection = player.transform.position - transform.position;
-        currentDirection = previousPos - transform.position;
+        PlayerController = player.GetComponent<PlayerController>();
 
-        if (teleporting)
+        playerDirection = player.transform.position - transform.position;
+        currentDirection = PlayerController.PreviousPos - transform.position;
+
+        if (PlayerController.Teleporting)
         {   
             // Enemies move where the player last was
             enemyRb.MovePosition((Vector2)transform.position + (speed * Time.deltaTime * currentDirection.normalized));

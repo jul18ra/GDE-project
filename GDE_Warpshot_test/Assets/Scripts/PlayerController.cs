@@ -16,14 +16,21 @@ public class PlayerController : MonoBehaviour
     private float teleportSpeed = 30f;
 
     private Vector3 previousPos;
+    public Vector3 PreviousPos { get { return previousPos; } }
+
     private Vector2 movement;
     private Vector3 mousePos;
 
     //private SpriteRenderer playerSprite;
     private Color playerColor;
 
-    private bool teleporting;
     private bool flashing;
+
+    private bool teleporting;
+    public bool Teleporting {  get { return teleporting; } }
+
+    private bool canShoot = true;
+    public bool CanShoot { get { return canShoot; } }
 
     private void Start()
     {
@@ -65,6 +72,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
     void FixedUpdate()
     {
         // Standard player movement
@@ -74,15 +82,17 @@ public class PlayerController : MonoBehaviour
 
         }
 
+
     }
 
-    public bool getIsTeleporting()
+    private void OnMouseOver()
     {
-        return teleporting;
+        canShoot = false;
     }
 
-    public Vector3 getPreviousPos()
+    private void OnMouseExit()
     {
-        return previousPos;
+        canShoot = true;
     }
+
 }
