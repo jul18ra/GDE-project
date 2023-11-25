@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private float teleportSpeed = 30f;
 
     private Vector3 previousPos;
-    private Vector3 movement;
+    private Vector2 movement;
     private Vector3 mousePos;
 
     //private SpriteRenderer playerSprite;
@@ -70,8 +70,7 @@ public class PlayerController : MonoBehaviour
         // Standard player movement
         if(!teleporting)
         {
-            //playerRb.MovePosition(playerRb.position + moveSpeed * Time.fixedDeltaTime * movement.normalized);
-            transform.Translate(moveSpeed * Time.fixedDeltaTime * movement.normalized);
+            playerRb.MovePosition(playerRb.position + moveSpeed * Time.fixedDeltaTime * movement.normalized);
 
         }
 
