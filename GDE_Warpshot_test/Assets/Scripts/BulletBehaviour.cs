@@ -40,9 +40,13 @@ public class BulletBehaviour : MonoBehaviour
     }
 
     // Destroys bullet and enemy on collision
-    void OnTriggerEnter2D(Collider2D enemy)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        enemy.gameObject.GetComponent<EnemyHealth>().TakeDamage(2);
-        Destroy(gameObject);
+        if(other.gameObject.tag == "Enemy")
+        {
+            enemy.gameObject.GetComponent<EnemyHealth>().TakeDamage(2);
+        }
+
+            Destroy(gameObject);
     }
 }
