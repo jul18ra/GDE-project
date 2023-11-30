@@ -344,6 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680f697bb0ab67541bf0d5ad3980a1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  robotPartPrefab: {fileID: 3121831144685239243, guid: d718578e3aa3fe24f8785dba08a9f157, type: 3}
 --- !u!114 &6295291520904260138
 MonoBehaviour:
   m_ObjectHideFlags: 0

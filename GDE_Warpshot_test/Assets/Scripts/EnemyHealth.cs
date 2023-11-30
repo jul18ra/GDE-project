@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public GameObject robotPartPrefab;
+
     private SpriteRenderer enemySprite;
 
     private GameObject textObj;
@@ -46,6 +48,7 @@ public class EnemyHealth : MonoBehaviour
 
         if(currentHealth <= 0) 
         {
+            Instantiate(robotPartPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

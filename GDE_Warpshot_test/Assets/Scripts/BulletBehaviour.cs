@@ -11,7 +11,6 @@ public class BulletBehaviour : MonoBehaviour
     private float force = 30f;
     private float destroyTime = 2.5f;
     private Vector2 aimDir;
-    private GameObject enemy;
 
     void Start()
     {
@@ -25,18 +24,17 @@ public class BulletBehaviour : MonoBehaviour
     {
         // Destroys bullet after destroyTime has passed
         Destroy(gameObject, destroyTime);
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
-
     }
 
     // Destroys bullet and enemy on collision
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Enemy") & enemy != null)
-        {
-            enemy.GetComponent<EnemyHealth>().TakeDamage(2);
-            Destroy(gameObject);
+        var enemyHealth = other.GetComponent<EnemyHealth>();
 
+        if (enemyHealth != null)
+        {
+            enemyHealth.TakeDamage(2);
+            Destroy(gameObject);
         }
 
     }

@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemy2Prefab;
 
     private float spawnStartTime = 2f;
-    private float spawnRepeatRate = 1f;
+    private float spawnRepeatRate = 2f;
 
     void Start()
     {
