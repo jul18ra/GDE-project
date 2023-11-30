@@ -41,7 +41,7 @@ public class LookAtMouse : MonoBehaviour
         headRotation = CalculateRotation(head, headMinAngle, headMaxAngle);
         head.transform.rotation = Quaternion.Euler(0, 0, headRotation);
 
-        Debug.Log(headRotation);
+        //Debug.Log(headRotation);
 
 
         gunRotation = transform.rotation;
@@ -57,7 +57,7 @@ public class LookAtMouse : MonoBehaviour
 
             // Ahh going insane (supposed to flip head)
             head.transform.rotation = Quaternion.Euler(180, 180, headRotation);
-            Debug.Log(headRotation);
+            //Debug.Log(headRotation);
 
         }
         else

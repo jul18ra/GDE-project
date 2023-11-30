@@ -10,8 +10,6 @@ public class PlayerHealth : MonoBehaviour
     private PlayerController playerController;
     //private SpriteRenderer playerSprite;
 
-    public GameObject enemy;
-
     private TMP_Text healthText;
 
     private int maxHealth = 10;
@@ -26,35 +24,41 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
 
         healthText = GameObject.Find("HealthText").GetComponent<TMP_Text>();
-        healthText.SetText($"Health: {currentHealth}");
 
         //playerSprite = gameObject.GetComponent<SpriteRenderer>();
         playerController = gameObject.GetComponent<PlayerController>();
     }
 
-    void Update()
+    private void Update()
     {
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        healthText.SetText($"Health: {currentHealth}");
     }
 
     void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        healthText.SetText($"Health: {currentHealth}");
         //StartCoroutine(FlashRed());
 
         if (currentHealth <= 0)
         {
+            currentHealth = 0;
             healthText.SetText($"Health: 0");
             Time.timeScale = 0;
         }
     }
 
-    void OnTriggerEnter2D(Collider2D enemy)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if(!playerController.Teleporting)
+        if(!playerController.Teleporting & other.CompareTag("Enemy"))
         {
+            Debug.Log("Enemy");
             TakeDamage(2);
+        }
+
+        if (other.CompareTag("HP") & currentHealth < maxHealth)
+        {
+            currentHealth++;
+            Destroy(other.gameObject);
         }
     }
 

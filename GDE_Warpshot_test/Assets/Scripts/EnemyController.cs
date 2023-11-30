@@ -39,7 +39,5 @@ public class EnemyController : MonoBehaviour
 
         }
 
-        //enemyRb.velocity = enemyRb.velocity.normalized * speed;
-
     }
 }
