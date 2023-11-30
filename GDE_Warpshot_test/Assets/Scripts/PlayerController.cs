@@ -10,7 +10,7 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 public class PlayerController : MonoBehaviour
 {
     private PlayerHealth playerHealth;
-    private TeleportTracker teleportTracker;
+    private ItemTracker teleportTracker;
 
     public Rigidbody2D playerRb;
     private float moveSpeed = 10f;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         //playerSprite = gameObject.GetComponent<SpriteRenderer>();
         playerHealth = gameObject.GetComponent<PlayerHealth>();
-        teleportTracker = gameObject.GetComponent<TeleportTracker>();   
+        teleportTracker = gameObject.GetComponent<ItemTracker>();   
     }
 
     void Update()
@@ -95,9 +95,15 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.CompareTag("TP"))
+        if (other.CompareTag("TeleportItem") & teleportTracker.CurrentTeleports < teleportTracker.MaxTeleports)
         {
             teleportTracker.CurrentTeleports++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("EnemyPart"))
+        {
+            teleportTracker.PartAmount++;
             Destroy(other.gameObject);
         }
     }

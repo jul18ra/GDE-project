@@ -12,18 +12,11 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D enemyRb;
     private GameObject player;
 
-    // Start is called before the first frame update
     void Start()
     {
         enemyRb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
     }
-
-    private void Update()
-    {
-        
-    }
-
     void FixedUpdate()
     {
         PlayerController = player.GetComponent<PlayerController>();

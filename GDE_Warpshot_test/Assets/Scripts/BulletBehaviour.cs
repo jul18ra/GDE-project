@@ -32,7 +32,7 @@ public class BulletBehaviour : MonoBehaviour
     // Destroys bullet and enemy on collision
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Enemy"))
+        if(other.CompareTag("Enemy") & enemy != null)
         {
             enemy.GetComponent<EnemyHealth>().TakeDamage(2);
             Destroy(gameObject);

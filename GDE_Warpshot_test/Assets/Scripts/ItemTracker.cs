@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TeleportTracker : MonoBehaviour
+public class ItemTracker : MonoBehaviour
 {
     private TMP_Text tpText;
+    private TMP_Text partText;
+
     private int maxTeleports = 3;
-    public int MaxTeleports { get { return currentTeleports; } }
+    public int MaxTeleports { get { return maxTeleports; } }
 
     private int currentTeleports;
     public int CurrentTeleports { get { return currentTeleports; } set { currentTeleports = value; } }
@@ -15,18 +17,23 @@ public class TeleportTracker : MonoBehaviour
     private bool canTeleport = true;
     public bool CanTeleport { get { return canTeleport; } set { canTeleport = value; } }
 
+    private int partAmount;
+    public int PartAmount { get { return partAmount; } set { partAmount = value; } }
 
-    // Start is called before the first frame update
+
     void Start()
     {
         currentTeleports = maxTeleports;
         tpText = GameObject.Find("TpText").GetComponent<TMP_Text>();
+        partText = GameObject.Find("PartText").GetComponent<TMP_Text>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         tpText.SetText($"Teleports: {currentTeleports}");
+        partText.SetText($"Parts: {partAmount}");
 
         if (currentTeleports <= 0)
         {
