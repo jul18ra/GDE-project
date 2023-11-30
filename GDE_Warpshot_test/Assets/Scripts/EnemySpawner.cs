@@ -6,18 +6,28 @@ using UnityEngine.XR;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    public GameObject enemySpawner;
+    private List<GameObject> enemies;
+
+    public GameObject enemy1Prefab;
+    public GameObject enemy2Prefab;
+
     private float spawnStartTime = 2f;
-    private float spawnRepeatRate = 5f;
+    private float spawnRepeatRate = 1f;
 
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", spawnStartTime, spawnRepeatRate);
+        enemies = new List<GameObject>
+        {
+            enemy1Prefab,
+            enemy2Prefab
+        };
+
+        InvokeRepeating(nameof(SpawnEnemy), spawnStartTime, spawnRepeatRate);
     }
 
     void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, enemySpawner.transform.position, enemyPrefab.transform.rotation);
+        int enemyIndex = Random.Range(0, enemies.Count);
+        Instantiate(enemies[enemyIndex], gameObject.transform.position, enemies[enemyIndex].transform.rotation);
     }
 }

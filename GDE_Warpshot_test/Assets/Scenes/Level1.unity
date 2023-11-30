@@ -13983,8 +13983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc7d1e74a923054089bc3f0838b6d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8578914183583813081, guid: 20d8ec374d3fecc479182b5041f28765, type: 3}
-  enemySpawner: {fileID: 1299196772}
+  enemy1Prefab: {fileID: 8578914183583813081, guid: 20d8ec374d3fecc479182b5041f28765, type: 3}
+  enemy2Prefab: {fileID: 6397064153773469443, guid: 6de8c393350754d4f9430665f94aa58d, type: 3}
 --- !u!4 &1299196774
 Transform:
   m_ObjectHideFlags: 0

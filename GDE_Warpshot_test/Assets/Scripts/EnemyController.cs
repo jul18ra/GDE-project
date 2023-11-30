@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     private PlayerController PlayerController;
-    private float speed = 8f;
+    private float speed;
     private Vector2 playerDirection;
     private Vector2 currentDirection;
     private Rigidbody2D enemyRb;
@@ -16,7 +16,18 @@ public class EnemyController : MonoBehaviour
     {
         enemyRb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
+
+        if (gameObject.name == "Enemy1(Clone)")
+        {
+            speed = 8f;
+        }
+
+        if (gameObject.name == "Enemy2(Clone)")
+        {
+            speed = 4f;
+        }
     }
+
     void FixedUpdate()
     {
         PlayerController = player.GetComponent<PlayerController>();

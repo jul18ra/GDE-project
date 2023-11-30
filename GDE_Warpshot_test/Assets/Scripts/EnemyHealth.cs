@@ -12,13 +12,23 @@ public class EnemyHealth : MonoBehaviour
 
     private TMP_Text healthText;
 
-    private int maxHealth = 8;
+    private int maxHealth;
     private int currentHealth;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        if(gameObject.name == "Enemy1(Clone)")
+        {
+            maxHealth = 8;
+        }
+
+        if (gameObject.name == "Enemy2(Clone)")
+        {
+            maxHealth = 20;
+        }
+
         currentHealth = maxHealth;
 
         textObj = gameObject.transform.GetChild(0).gameObject;
