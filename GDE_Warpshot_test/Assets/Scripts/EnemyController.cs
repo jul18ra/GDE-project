@@ -19,7 +19,11 @@ public class EnemyController : MonoBehaviour
         player = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        
+    }
+
     void FixedUpdate()
     {
         PlayerController = player.GetComponent<PlayerController>();
@@ -28,7 +32,7 @@ public class EnemyController : MonoBehaviour
         currentDirection = PlayerController.PreviousPos - transform.position;
 
         if (PlayerController.Teleporting)
-        {   
+        {
             // Enemies move where the player last was
             enemyRb.MovePosition((Vector2)transform.position + (speed * Time.deltaTime * currentDirection.normalized));
         }
@@ -38,6 +42,5 @@ public class EnemyController : MonoBehaviour
             enemyRb.MovePosition((Vector2)transform.position + (speed * Time.deltaTime * playerDirection.normalized));
 
         }
-
     }
 }

@@ -16,19 +16,9 @@ public class BulletBehaviour : MonoBehaviour
     void Start()
     {
         bulletRb = gameObject.GetComponent<Rigidbody2D>();
-
-        
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
         aimDir = mousePos - transform.position;
-  
         bulletRb.AddForce(aimDir.normalized * force, ForceMode2D.Impulse);
-
-    }
-
-    private void FixedUpdate()
-    {
-
     }
 
     void Update()
@@ -45,7 +35,16 @@ public class BulletBehaviour : MonoBehaviour
         if(other.CompareTag("Enemy"))
         {
             enemy.GetComponent<EnemyHealth>().TakeDamage(2);
+            Destroy(gameObject);
+
         }
-        Destroy(gameObject);
+
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -13,7 +13,10 @@ public class PlayerHealth : MonoBehaviour
     private TMP_Text healthText;
 
     private int maxHealth = 10;
+    public int MaxHealth { get { return maxHealth; } }
+
     private int currentHealth;
+    public int CurrentHealth { get { return currentHealth; } set { currentHealth = value; } }
 
     //private bool teleporting;
     //private bool flashing;
@@ -34,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
         healthText.SetText($"Health: {currentHealth}");
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         //StartCoroutine(FlashRed());
@@ -44,21 +47,6 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = 0;
             healthText.SetText($"Health: 0");
             Time.timeScale = 0;
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(!playerController.Teleporting & other.CompareTag("Enemy"))
-        {
-            Debug.Log("Enemy");
-            TakeDamage(2);
-        }
-
-        if (other.CompareTag("HP") & currentHealth < maxHealth)
-        {
-            currentHealth++;
-            Destroy(other.gameObject);
         }
     }
 

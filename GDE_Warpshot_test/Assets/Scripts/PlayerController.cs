@@ -10,6 +10,7 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 public class PlayerController : MonoBehaviour
 {
     private PlayerHealth playerHealth;
+    private TeleportTracker teleportTracker;
 
     public Rigidbody2D playerRb;
     private float moveSpeed = 10f;
@@ -36,20 +37,19 @@ public class PlayerController : MonoBehaviour
     {
         //playerSprite = gameObject.GetComponent<SpriteRenderer>();
         playerHealth = gameObject.GetComponent<PlayerHealth>();
-
+        teleportTracker = gameObject.GetComponent<TeleportTracker>();   
     }
 
     void Update()
     {
-        //flashing = playerHealth.getIsFlashing();
-
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
         // Teleports player when right click 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) & teleportTracker.CanTeleport)
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            teleportTracker.CurrentTeleports--;
             teleporting = true;
         }
 
@@ -72,7 +72,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
     void FixedUpdate()
     {
         // Standard player movement
@@ -81,8 +80,26 @@ public class PlayerController : MonoBehaviour
             playerRb.MovePosition(playerRb.position + moveSpeed * Time.fixedDeltaTime * movement.normalized);
 
         }
+    }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!teleporting & other.CompareTag("Enemy"))
+        {
+            playerHealth.TakeDamage(2);
+        }
 
+        if (other.CompareTag("HP") & playerHealth.CurrentHealth < playerHealth.MaxHealth)
+        {
+            playerHealth.CurrentHealth++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("TP"))
+        {
+            teleportTracker.CurrentTeleports++;
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnMouseOver()
