@@ -10,7 +10,7 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 public class PlayerController : MonoBehaviour
 {
     private PlayerHealth playerHealth;
-    private ItemTracker teleportTracker;
+    private ItemTracker itemTracker;
 
     public Rigidbody2D playerRb;
     private float moveSpeed = 10f;
@@ -22,11 +22,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 movement;
     private Vector3 mousePos;
 
-    //private SpriteRenderer playerSprite;
-    private Color playerColor;
-
-    private bool flashing;
-
     private bool teleporting;
     public bool Teleporting {  get { return teleporting; } }
 
@@ -37,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         //playerSprite = gameObject.GetComponent<SpriteRenderer>();
         playerHealth = gameObject.GetComponent<PlayerHealth>();
-        teleportTracker = gameObject.GetComponent<ItemTracker>();   
+        itemTracker = gameObject.GetComponent<ItemTracker>();   
     }
 
     void Update()
@@ -46,28 +41,22 @@ public class PlayerController : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
         // Teleports player when right click 
-        if (Input.GetMouseButtonDown(1) & teleportTracker.CanTeleport)
+        if (Input.GetMouseButtonDown(1) & itemTracker.CanTeleport)
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            teleportTracker.CurrentTeleports--;
+            itemTracker.CurrentTeleports--;
             teleporting = true;
         }
 
         // Teleports player to cursor position
         if (teleporting & transform.position != mousePos)
         {
-            //playerSprite.color = new Color(1f, 1f, 1f, 0.5f);
             transform.position = Vector3.MoveTowards(transform.position, mousePos, Time.deltaTime * teleportSpeed);
         }
         else
         {
             teleporting = false;
             previousPos = transform.position;
-        }
-
-        if (!flashing & !teleporting)
-        {
-            //playerSprite.color = new Color(1f, 1f, 1f, 1f);
         }
 
     }
@@ -84,28 +73,32 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!teleporting & other.CompareTag("Enemy"))
+        if (!teleporting)
         {
-            playerHealth.TakeDamage(2);
-        }
+            if (other.CompareTag("Enemy"))
+            {
+                playerHealth.TakeDamage(2);
+            }
 
-        if (other.CompareTag("HP") & playerHealth.CurrentHealth < playerHealth.MaxHealth)
-        {
-            playerHealth.CurrentHealth++;
-            Destroy(other.gameObject);
-        }
+            if (other.CompareTag("HP") & playerHealth.CurrentHealth < playerHealth.MaxHealth)
+            {
+                playerHealth.CurrentHealth++;
+                Destroy(other.gameObject);
+            }
 
-        if (other.CompareTag("TeleportItem") & teleportTracker.CurrentTeleports < teleportTracker.MaxTeleports)
-        {
-            teleportTracker.CurrentTeleports++;
-            Destroy(other.gameObject);
-        }
+            if (other.CompareTag("TeleportItem") & itemTracker.CurrentTeleports < itemTracker.MaxTeleports)
+            {
+                itemTracker.CurrentTeleports++;
+                Destroy(other.gameObject);
+            }
 
-        if (other.CompareTag("EnemyPart"))
-        {
-            teleportTracker.PartAmount++;
-            Destroy(other.gameObject);
+            if (other.CompareTag("EnemyPart"))
+            {
+                itemTracker.PartAmount++;
+                Destroy(other.gameObject);
+            }
         }
+       
     }
 
     private void OnMouseOver()

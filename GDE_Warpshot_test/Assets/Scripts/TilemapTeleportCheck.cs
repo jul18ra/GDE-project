@@ -5,23 +5,24 @@ using UnityEngine;
 
 public class TilemapTeleportCheck : MonoBehaviour
 {
-    private ItemTracker teleportTracker;
+    private ItemTracker itemTracker;
 
     void Start()
     {
-        teleportTracker = GameObject.Find("Player").GetComponent<ItemTracker>();
+        itemTracker = GameObject.Find("Player").GetComponent<ItemTracker>();
     }
 
     // Player can teleport if the mouse is on a floor tile
 
     private void OnMouseOver()
     {
-        teleportTracker.CanTeleport = true;
+        if (itemTracker.CurrentTeleports > 0)
+        itemTracker.CanTeleport = true;
     }
 
     private void OnMouseExit()
     {
-        teleportTracker.CanTeleport = false;
+        itemTracker.CanTeleport = false;
     }
 
 }
