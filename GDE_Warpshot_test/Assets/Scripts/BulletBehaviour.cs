@@ -35,12 +35,10 @@ public class BulletBehaviour : MonoBehaviour
             Destroy(gameObject);
         }
 
-    }
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.collider.CompareTag("Wall"))
+        if (other.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }
     }
+
 }
