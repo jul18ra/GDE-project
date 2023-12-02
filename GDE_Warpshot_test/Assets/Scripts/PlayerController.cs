@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     private PlayerHealth playerHealth;
     private ItemTracker itemTracker;
 
+    private int playerLayer;
+    private int enemyLayer;
+
     public Rigidbody2D playerRb;
     private float moveSpeed = 10f;
     private float teleportSpeed = 30f;
@@ -40,6 +43,9 @@ public class PlayerController : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        playerLayer = LayerMask.NameToLayer("Player");
+        enemyLayer = LayerMask.NameToLayer("Enemy");
+
         // Teleports player when right click 
         if (Input.GetMouseButtonDown(1) & itemTracker.CanTeleport)
         {
@@ -51,11 +57,13 @@ public class PlayerController : MonoBehaviour
         // Teleports player to cursor position
         if (teleporting & transform.position != mousePos)
         {
+            Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
             transform.position = Vector3.MoveTowards(transform.position, mousePos, Time.deltaTime * teleportSpeed);
         }
         else
         {
             teleporting = false;
+            Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);
             previousPos = transform.position;
         }
 
@@ -71,14 +79,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Enemy"))
+        {
+            playerHealth.TakeDamage(2);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!teleporting)
         {
-            if (other.CompareTag("Enemy"))
-            {
-                playerHealth.TakeDamage(2);
-            }
 
             if (other.CompareTag("HP") & playerHealth.CurrentHealth < playerHealth.MaxHealth)
             {

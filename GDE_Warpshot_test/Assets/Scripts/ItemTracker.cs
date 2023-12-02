@@ -35,8 +35,6 @@ public class ItemTracker : MonoBehaviour
         tpText.SetText($"Teleports: {currentTeleports}");
         partText.SetText($"Parts: {partAmount}");
 
-        Debug.Log(CanTeleport);
-
         if (currentTeleports <= 0)
         {
             canTeleport = false;
