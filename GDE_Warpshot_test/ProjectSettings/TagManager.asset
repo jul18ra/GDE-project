@@ -9,6 +9,7 @@ TagManager:
   - HP
   - TeleportItem
   - EnemyPart
+  - TP
   layers:
   - Default
   - TransparentFX

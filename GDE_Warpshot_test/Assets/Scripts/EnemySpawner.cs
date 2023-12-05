@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
 
     private int waveValue;
     private int waveCount = 1;
-    private int waveDuration = 10;
+    private int waveDuration = 45;
     private float waveTimer;
 
     private float spawnTimer;
@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(spawnedEnemies);
+        // Debug.Log(spawnedEnemies);
 
         if (spawnTimer <= 0)
         {
@@ -65,6 +65,13 @@ public class EnemySpawner : MonoBehaviour
         {
             spawnTimer -= Time.deltaTime;
             waveTimer -= Time.deltaTime;
+        }
+
+        if (waveTimer <= 0 & spawnedEnemies == 0) 
+        {
+            Debug.Log($"Wave {waveCount} has ended");
+            waveCount++;
+            StartWave();
         }
     }
 
@@ -101,7 +108,7 @@ public class EnemySpawner : MonoBehaviour
     void StartWave()
     {
         PickEnemiesToSpawn();
-        spawnRepeatRate = waveDuration - enemiesToSpawn.Count;
+        spawnRepeatRate = waveDuration / enemiesToSpawn.Count;
         waveTimer = waveDuration;
         spawnTimer = 2;
     }
