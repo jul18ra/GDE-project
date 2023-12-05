@@ -83,12 +83,12 @@ public class PlayerController : MonoBehaviour
     {
         if (other.collider.CompareTag("Enemy"))
         {
-            if (other.collider.name == "Enemy1(Clone)")
+            if (other.collider.name == "RobotSpider(Clone)")
             {
                 playerHealth.TakeDamage(1);
             }
 
-            if (other.collider.name == "Enemy2(Clone)")
+            if (other.collider.name == "RobotGiant(Clone)")
             {
                 playerHealth.TakeDamage(3);
             }

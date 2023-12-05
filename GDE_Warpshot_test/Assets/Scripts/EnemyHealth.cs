@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class EnemyHealth : MonoBehaviour
 {
+    private GameObject enemySpawners;
+    private EnemySpawner enemySpawnerScript;
+
     public GameObject robotPartPrefab;
 
     private SpriteRenderer enemySprite;
@@ -21,12 +25,15 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(gameObject.name == "Enemy1(Clone)")
+        enemySpawners = GameObject.Find("EnemySpawners");
+        enemySpawnerScript = enemySpawners.GetComponent<EnemySpawner>();
+
+        if (gameObject.name == "RobotSpider(Clone)")
         {
             maxHealth = 8;
         }
 
-        if (gameObject.name == "Enemy2(Clone)")
+        if (gameObject.name == "RobotGiant(Clone)")
         {
             maxHealth = 20;
         }
@@ -51,6 +58,11 @@ public class EnemyHealth : MonoBehaviour
             Instantiate(robotPartPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        enemySpawnerScript.SpawnedEnemies--;
     }
 
     IEnumerator FlashRed()

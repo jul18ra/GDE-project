@@ -17,12 +17,12 @@ public class EnemyController : MonoBehaviour
         enemyRb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
 
-        if (gameObject.name == "Enemy1(Clone)")
+        if (gameObject.name == "RobotSpider(Clone)")
         {
             speed = 8f;
         }
 
-        if (gameObject.name == "Enemy2(Clone)")
+        if (gameObject.name == "RobotGiant(Clone)")
         {
             speed = 4f;
         }
