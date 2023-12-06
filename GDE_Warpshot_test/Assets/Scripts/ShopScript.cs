@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Mail;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,7 +41,6 @@ public class ShopScript : MonoBehaviour
     private List<TMP_Text> itemCostTextList;
 
 
-
     private bool shopIsOpen = false;
 
     // Start is called before the first frame update
@@ -52,6 +52,7 @@ public class ShopScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (enemySpawnerScript.WaveEnded & !shopIsOpen)
         {
             openShopPrompt.SetActive(true);
@@ -78,7 +79,6 @@ public class ShopScript : MonoBehaviour
 
     void GetShopUIReferences()
     {
-
         item1Text = GameObject.Find("Image1").GetComponentInChildren<TMP_Text>();
         item2Text = GameObject.Find("Image2").GetComponentInChildren<TMP_Text>();
         item3Text = GameObject.Find("Image3").GetComponentInChildren<TMP_Text>();
@@ -92,10 +92,10 @@ public class ShopScript : MonoBehaviour
 
     void ListItems()
     {
-        Item damageUp = new(bulletScript.BulletDamage, 5, 0.1f, $"Increase damage dealt by {0} %");
-        Item fireRateUp = new(aimingScript.FireRate, 5, 0.1f, $"Increase weapon fire rate by {0} %");
-        Item maxTeleportUp = new(itemScript.MaxTeleports, 5, 1, $"Increase teleport item slots by {0}");
-        Item maxHealthUp = new(playerHealthScript.MaxHealth, 5, 0, $"Increase max health by {0} %");
+        Item damageUp = new(bulletScript.BulletDamage, 5, $"Increase damage dealt by ");
+        Item fireRateUp = new(aimingScript.FireRate, 5, $"Increase weapon fire rate by ");
+        Item maxTeleportUp = new(itemScript.MaxTeleports, 5, $"Increase teleport item slots by ");
+        Item maxHealthUp = new(playerHealthScript.MaxHealth, 5, $"Increase max health by ");
 
         items = new List<Item>
         {
@@ -143,6 +143,8 @@ public class ShopScript : MonoBehaviour
         int n = 0;
         foreach (var itemText in itemTextList)
         {
+            shopItems[n].RandomiseMultiplier();
+            shopItems[n].description += $"{shopItems[n].multiplier * 100} %";
             itemText.SetText(shopItems[n].description);
             n++;
         }
@@ -154,7 +156,6 @@ public class ShopScript : MonoBehaviour
             n++;
         }
     }
-
 
     public void OpenShop()
     {
@@ -169,22 +170,47 @@ public class ShopScript : MonoBehaviour
         shopIsOpen = false;
     }
 
+    public void BuyItem(int itemIndex)
+    {
+        // Deduct cost from total part amount
+        itemScript.PartAmount -= shopItems[itemIndex].cost;
+
+        shopItems[itemIndex].UpgradeStats();
+    }
+
 }
 
 public class Item
 {
     public float upgrade;
     public int cost;
-    public float multiplier;
     public string description;
+    private int timesPurchased;
+    public float multiplier;
 
-    public Item(float upgrade, int cost, float multiplier, string description) 
+
+    public Item(float upgrade, int cost, string description) 
     {
         this.upgrade = upgrade;
         this.cost = cost;
-        this.multiplier = multiplier;
         this.description = description;
     }
 
-    // Make RiseCost() method
+    public void UpgradeStats()
+    {
+        upgrade += upgrade * multiplier;
+        RiseCost();
+    }
+
+    public void RandomiseMultiplier()
+    {
+        multiplier = UnityEngine.Random.Range(0.05f, 0.20f);
+        multiplier = (float)Math.Round(multiplier, 2);
+    }
+
+    private void RiseCost() 
+    {
+        timesPurchased++;
+        cost *= timesPurchased;
+    }
 }
