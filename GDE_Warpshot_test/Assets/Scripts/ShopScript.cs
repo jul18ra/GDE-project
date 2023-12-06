@@ -162,7 +162,13 @@ public class ShopScript : MonoBehaviour
             n++;
         }
 
-        n = 0;
+        UpdateCost();
+
+    }
+
+    private void UpdateCost()
+    {
+        int n = 0;
         foreach (var itemCostText in itemCostTextList)
         {
             itemCostText.SetText($"{shopItems[n].cost} parts");
@@ -185,12 +191,15 @@ public class ShopScript : MonoBehaviour
 
     public void BuyItem(int itemIndex)
     {
-        // Deduct cost from total part amount
-        itemScript.PartAmount -= shopItems[itemIndex].cost;
+        if(itemScript.PartAmount >= shopItems[itemIndex].cost)
+        {
+            // Deduct cost from total part amount
+            itemScript.PartAmount -= shopItems[itemIndex].cost;
 
-        shopItems[itemIndex].UpgradeStats();
+            shopItems[itemIndex].UpgradeStats();
+            UpdateCost();
+        }
     }
-
 }
 
 public class Item
@@ -198,7 +207,7 @@ public class Item
     public float upgrade;
     public int cost;
     public string description;
-    private int timesPurchased;
+    private int timesPurchased = 1;
     public float multiplier;
 
     public Item(float upgrade, int cost, string description) 
@@ -210,7 +219,15 @@ public class Item
 
     public void UpgradeStats()
     {
-        upgrade += upgrade * multiplier;
+        if (multiplier % 1 == 0)
+        {
+            upgrade += multiplier;
+        }
+        else
+        {
+            upgrade += upgrade * multiplier;
+        }
+
         RiseCost();
     }
 
@@ -221,7 +238,7 @@ public class Item
     }
     public void SetMultiplier()
     {
-        multiplier = 1; // + currentWave - 1
+        multiplier = 1;
     }
 
     private void RiseCost() 
