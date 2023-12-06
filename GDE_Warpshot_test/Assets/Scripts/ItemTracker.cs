@@ -8,11 +8,11 @@ public class ItemTracker : MonoBehaviour
     private TMP_Text tpText;
     private TMP_Text partText;
 
-    private int maxTeleports = 3;
-    public int MaxTeleports { get { return maxTeleports; } set { maxTeleports = value; } }
+    private float maxTeleports = 3;
+    public float MaxTeleports { get { return maxTeleports; } set { maxTeleports = value; } }
 
-    private int currentTeleports;
-    public int CurrentTeleports { get { return currentTeleports; } set { currentTeleports = value; } }
+    private float currentTeleports;
+    public float CurrentTeleports { get { return currentTeleports; } set { currentTeleports = value; } }
 
     private bool canTeleport = true;
     public bool CanTeleport { get { return canTeleport; } set { canTeleport = value; } }

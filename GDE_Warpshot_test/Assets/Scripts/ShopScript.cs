@@ -93,12 +93,11 @@ public class ShopScript : MonoBehaviour
 
     void ListItems()
     {
-        Item damageUp = new(bulletScript.BulletDamage, 5, $"Increase damage dealt by ");
-        Item fireRateUp = new(aimingScript.FireRate, 5, $"Increase weapon fire rate by ");
-        Item maxTeleportUp = new(itemScript.MaxTeleports, 5, $"Increase teleport item slots by ");
-        Item maxHealthUp = new(playerHealthScript.MaxHealth, 5, $"Increase max health by ");
+        DamageUpItem damageUp = new(bulletScript.BulletDamage, 5, $"Increase damage dealt by ");
+        FireRateUpItem fireRateUp = new(aimingScript.FireRate, 5, $"Increase weapon fire rate by ");
+        TeleportUpItem maxTeleportUp = new(itemScript.MaxTeleports, 5, $"Increase teleport item slots by ");
+        HealthUpItem maxHealthUp = new(playerHealthScript.MaxHealth, 5, $"Increase max health by ");
         // Item dropRatehUp = new(script.DropRate, 5, $"Increase enemy drop rate by ");
-
 
         items = new List<Item>
         {
@@ -147,18 +146,17 @@ public class ShopScript : MonoBehaviour
         int n = 0;
         foreach (var itemText in itemTextList)
         {
-            if (shopItems[n].description != items[2].description)
+            if (shopItems[n].GetType() != typeof(TeleportUpItem))
             {
                 shopItems[n].RandomiseMultiplier();
-                shopItems[n].description += $"{shopItems[n].multiplier * 100} %";
+                shopItems[n].Description += $"{shopItems[n].Multiplier * 100} %";
             }
             else
             {
-                shopItems[n].SetMultiplier();
-                shopItems[n].description += $"{shopItems[n].multiplier}";
+                shopItems[n].Description += $"{shopItems[n].Multiplier}";
             }
 
-            itemText.SetText(shopItems[n].description);
+            itemText.SetText(shopItems[n].Description);
             n++;
         }
 
@@ -171,7 +169,7 @@ public class ShopScript : MonoBehaviour
         int n = 0;
         foreach (var itemCostText in itemCostTextList)
         {
-            itemCostText.SetText($"{shopItems[n].cost} parts");
+            itemCostText.SetText($"{shopItems[n].Cost} parts");
             n++;
         }
     }
@@ -191,60 +189,14 @@ public class ShopScript : MonoBehaviour
 
     public void BuyItem(int itemIndex)
     {
-        if(itemScript.PartAmount >= shopItems[itemIndex].cost)
+        if(itemScript.PartAmount >= shopItems[itemIndex].Cost)
         {
             // Deduct cost from total part amount
-            itemScript.PartAmount -= shopItems[itemIndex].cost;
+            itemScript.PartAmount -= shopItems[itemIndex].Cost;
 
             shopItems[itemIndex].UpgradeStats();
             UpdateCost();
         }
+
     }
-}
-
-public class Item
-{
-    public float upgrade;
-    public int cost;
-    public string description;
-    private int timesPurchased = 1;
-    public float multiplier;
-
-    public Item(float upgrade, int cost, string description) 
-    {
-        this.upgrade = upgrade;
-        this.cost = cost;
-        this.description = description;
-    }
-
-    public void UpgradeStats()
-    {
-        if (multiplier % 1 == 0)
-        {
-            upgrade += multiplier;
-        }
-        else
-        {
-            upgrade += upgrade * multiplier;
-        }
-
-        RiseCost();
-    }
-
-    public void RandomiseMultiplier()
-    {
-        multiplier = UnityEngine.Random.Range(0.05f, 0.20f);
-        multiplier = (float)Math.Round(multiplier, 2);
-    }
-    public void SetMultiplier()
-    {
-        multiplier = 1;
-    }
-
-    private void RiseCost() 
-    {
-        timesPurchased++;
-        cost *= timesPurchased;
-    }
-
 }
