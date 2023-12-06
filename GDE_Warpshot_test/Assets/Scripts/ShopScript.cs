@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor.Rendering.Universal;
 using UnityEngine;
 using UnityEngine.UI;
+using static Item;
 
 public class ShopScript : MonoBehaviour
 {
@@ -96,6 +97,8 @@ public class ShopScript : MonoBehaviour
         Item fireRateUp = new(aimingScript.FireRate, 5, $"Increase weapon fire rate by ");
         Item maxTeleportUp = new(itemScript.MaxTeleports, 5, $"Increase teleport item slots by ");
         Item maxHealthUp = new(playerHealthScript.MaxHealth, 5, $"Increase max health by ");
+        // Item dropRatehUp = new(script.DropRate, 5, $"Increase enemy drop rate by ");
+
 
         items = new List<Item>
         {
@@ -139,12 +142,22 @@ public class ShopScript : MonoBehaviour
     {
         GetShopUIReferences();
         GenerateShopItems();
+        ListItems();
 
         int n = 0;
         foreach (var itemText in itemTextList)
         {
-            shopItems[n].RandomiseMultiplier();
-            shopItems[n].description += $"{shopItems[n].multiplier * 100} %";
+            if (shopItems[n].description != items[2].description)
+            {
+                shopItems[n].RandomiseMultiplier();
+                shopItems[n].description += $"{shopItems[n].multiplier * 100} %";
+            }
+            else
+            {
+                shopItems[n].SetMultiplier();
+                shopItems[n].description += $"{shopItems[n].multiplier}";
+            }
+
             itemText.SetText(shopItems[n].description);
             n++;
         }
@@ -188,7 +201,6 @@ public class Item
     private int timesPurchased;
     public float multiplier;
 
-
     public Item(float upgrade, int cost, string description) 
     {
         this.upgrade = upgrade;
@@ -207,10 +219,15 @@ public class Item
         multiplier = UnityEngine.Random.Range(0.05f, 0.20f);
         multiplier = (float)Math.Round(multiplier, 2);
     }
+    public void SetMultiplier()
+    {
+        multiplier = 1; // + currentWave - 1
+    }
 
     private void RiseCost() 
     {
         timesPurchased++;
         cost *= timesPurchased;
     }
+
 }
