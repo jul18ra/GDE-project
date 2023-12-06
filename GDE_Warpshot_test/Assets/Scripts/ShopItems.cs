@@ -108,6 +108,7 @@ public class HealthUpItem : Item
         playerHealthScript = player.GetComponent<PlayerHealth>();
 
         playerHealthScript.MaxHealth = upgrade;
+        playerHealthScript.CurrentHealth = upgrade;
     }
 }
 
@@ -128,7 +129,8 @@ public class TeleportUpItem : Item
 
         upgrade += multiplier;
         itemScript.MaxTeleports = upgrade;
-        RiseCost();
+        itemScript.CurrentTeleports = upgrade;
+        RaiseCost();
     }
 
     public override void RandomiseMultiplier()
