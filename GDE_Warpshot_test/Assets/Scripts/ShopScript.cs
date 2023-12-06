@@ -31,9 +31,14 @@ public class ShopScript : MonoBehaviour
     private TMP_Text item2Text;
     private TMP_Text item3Text;
 
+    private List<TMP_Text> itemTextList;
+
     private TMP_Text item1CostText;
     private TMP_Text item2CostText;
     private TMP_Text item3CostText;
+
+    private List<TMP_Text> itemCostTextList;
+
 
 
     private bool shopIsOpen = false;
@@ -73,6 +78,7 @@ public class ShopScript : MonoBehaviour
 
     void GetShopUIReferences()
     {
+
         item1Text = GameObject.Find("Image1").GetComponentInChildren<TMP_Text>();
         item2Text = GameObject.Find("Image2").GetComponentInChildren<TMP_Text>();
         item3Text = GameObject.Find("Image3").GetComponentInChildren<TMP_Text>();
@@ -80,6 +86,8 @@ public class ShopScript : MonoBehaviour
         item1CostText = GameObject.Find("ButtonBuy1").GetComponentInChildren<TMP_Text>();
         item2CostText = GameObject.Find("ButtonBuy2").GetComponentInChildren<TMP_Text>();
         item3CostText = GameObject.Find("ButtonBuy3").GetComponentInChildren<TMP_Text>();
+
+        ListText();
     }
 
     void ListItems()
@@ -95,6 +103,23 @@ public class ShopScript : MonoBehaviour
             fireRateUp,
             maxTeleportUp,
             maxHealthUp
+        };
+    }
+
+    void ListText()
+    {
+        itemTextList = new List<TMP_Text>
+        {
+            item1Text,
+            item2Text,
+            item3Text
+        };
+
+        itemCostTextList = new List<TMP_Text>
+        {
+            item1CostText, 
+            item2CostText, 
+            item3CostText
         };
     }
 
@@ -115,13 +140,19 @@ public class ShopScript : MonoBehaviour
         GetShopUIReferences();
         GenerateShopItems();
 
-        item1Text.SetText(shopItems[0].description);
-        item2Text.SetText(shopItems[1].description);
-        item3Text.SetText(shopItems[2].description);
+        int n = 0;
+        foreach (var itemText in itemTextList)
+        {
+            itemText.SetText(shopItems[n].description);
+            n++;
+        }
 
-        item1CostText.SetText($"{shopItems[0].cost}");
-        item2CostText.SetText($"{shopItems[1].cost}");
-        item3CostText.SetText($"{shopItems[2].cost}");
+        n = 0;
+        foreach (var itemCostText in itemCostTextList)
+        {
+            itemCostText.SetText($"{shopItems[n].cost}");
+            n++;
+        }
     }
 
 
