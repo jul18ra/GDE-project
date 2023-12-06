@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     public bool Teleporting {  get { return teleporting; } }
 
     private bool canShoot = true;
-    public bool CanShoot { get { return canShoot; } }
+    public bool CanShoot { get { return canShoot; } set { canShoot = value; } }
 
     private void Start()
     {

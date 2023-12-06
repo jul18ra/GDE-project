@@ -22,11 +22,13 @@ public class EnemySpawner : MonoBehaviour
     private int waveCount = 1;
     private int waveDuration = 45;
     private float waveTimer;
+    private bool waveEnded;
+    public bool WaveEnded { get { return waveEnded; } set { waveEnded = value; } }
+
 
     private float spawnTimer;
     private float spawnRepeatRate;
     private int spawnedEnemies;
-    
     public int SpawnedEnemies { get { return spawnedEnemies; } set {  spawnedEnemies = value; } }
 
     void Start()
@@ -69,9 +71,10 @@ public class EnemySpawner : MonoBehaviour
 
         if (waveTimer <= 0 & spawnedEnemies == 0) 
         {
-            Debug.Log($"Wave {waveCount} has ended");
-            waveCount++;
-            StartWave();
+            // Debug.Log($"Wave {waveCount} has ended");
+            // waveCount++;
+            waveEnded = true;
+            // StartWave();
         }
     }
 

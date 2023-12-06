@@ -17,7 +17,9 @@ public class TilemapTeleportCheck : MonoBehaviour
     private void OnMouseOver()
     {
         if (itemTracker.CurrentTeleports > 0)
-        itemTracker.CanTeleport = true;
+        {
+            itemTracker.CanTeleport = true;
+        }
     }
 
     private void OnMouseExit()
