@@ -33,6 +33,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
+        ListEnemies();
         StartWave();
     }
 
@@ -90,10 +91,8 @@ public class EnemySpawner : MonoBehaviour
         };
     }
 
-    void PickEnemiesToSpawn()
+    void GenerateEnemiesToSpawn()
     {
-        ListEnemies();
-
         waveValue = waveCount * 10;
 
         while (waveValue > 0)
@@ -110,7 +109,7 @@ public class EnemySpawner : MonoBehaviour
 
     void StartWave()
     {
-        PickEnemiesToSpawn();
+        GenerateEnemiesToSpawn();
         spawnRepeatRate = waveDuration / enemiesToSpawn.Count;
         waveTimer = waveDuration;
         spawnTimer = 2;

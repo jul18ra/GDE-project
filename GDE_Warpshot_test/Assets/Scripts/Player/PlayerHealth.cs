@@ -12,11 +12,11 @@ public class PlayerHealth : MonoBehaviour
 
     private TMP_Text healthText;
 
-    private int maxHealth = 10;
-    public int MaxHealth { get { return maxHealth; } }
+    private float maxHealth = 10;
+    public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
 
-    private int currentHealth;
-    public int CurrentHealth { get { return currentHealth; } set { currentHealth = value; } }
+    private float currentHealth;
+    public float CurrentHealth { get { return currentHealth; } set { currentHealth = value; } }
 
     //private bool teleporting;
     //private bool flashing;
@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
         healthText.SetText($"Health: {currentHealth}");
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         //StartCoroutine(FlashRed());

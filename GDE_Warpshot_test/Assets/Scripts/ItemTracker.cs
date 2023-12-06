@@ -9,7 +9,7 @@ public class ItemTracker : MonoBehaviour
     private TMP_Text partText;
 
     private int maxTeleports = 3;
-    public int MaxTeleports { get { return maxTeleports; } }
+    public int MaxTeleports { get { return maxTeleports; } set { maxTeleports = value; } }
 
     private int currentTeleports;
     public int CurrentTeleports { get { return currentTeleports; } set { currentTeleports = value; } }

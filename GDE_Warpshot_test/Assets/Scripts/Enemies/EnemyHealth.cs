@@ -18,8 +18,8 @@ public class EnemyHealth : MonoBehaviour
 
     private TMP_Text healthText;
 
-    private int maxHealth;
-    private int currentHealth;
+    private float maxHealth;
+    private float currentHealth;
 
 
     // Start is called before the first frame update
@@ -47,7 +47,7 @@ public class EnemyHealth : MonoBehaviour
         enemySprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         healthText.SetText($"{currentHealth}/{maxHealth}");

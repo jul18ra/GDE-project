@@ -12,9 +12,11 @@ public class Aiming : MonoBehaviour
     public Texture2D crosshair;
     private Vector2 cursorHotspot;
     public GameObject projectilePrefab;
-    private float fireRate = 0.2f;
     private float timer;
-    public Quaternion gunRotation;
+
+    private float fireRate = 0.2f;
+    public float FireRate {  get { return fireRate; } set {  fireRate = value; } }
+
 
     void Start()
     {

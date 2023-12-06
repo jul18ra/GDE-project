@@ -12,6 +12,9 @@ public class BulletBehaviour : MonoBehaviour
     private float destroyTime = 2.5f;
     private Vector2 aimDir;
 
+    private float bulletDamage = 2;
+    public float BulletDamage {  get { return bulletDamage; } set {  bulletDamage = value; } }
+
     void Start()
     {
         bulletRb = gameObject.GetComponent<Rigidbody2D>();
@@ -31,7 +34,7 @@ public class BulletBehaviour : MonoBehaviour
     {
         if (other.TryGetComponent<EnemyHealth>(out var enemyHealth))
         {
-            enemyHealth.TakeDamage(2);
+            enemyHealth.TakeDamage(bulletDamage);
             Destroy(gameObject);
         }
 
