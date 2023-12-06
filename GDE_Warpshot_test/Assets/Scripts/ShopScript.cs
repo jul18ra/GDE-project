@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mail;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,16 +12,36 @@ public class ShopScript : MonoBehaviour
     private GameObject enemySpawners;
     private EnemySpawner enemySpawnerScript;
 
+    private GameObject player;
+    private GameObject gun;
+    public GameObject bullet;
+
+    private BulletBehaviour bulletScript;
+    private Aiming aimingScript;
+    private ItemTracker itemScript;
+    private PlayerHealth playerHealthScript;
+
+    private List<Item> items;
+    private List<Item> shopItems = new();
+
     public GameObject openShopPrompt;
     public GameObject shopUI;
+
+    private TMP_Text item1Text;
+    private TMP_Text item2Text;
+    private TMP_Text item3Text;
+
+    private TMP_Text item1CostText;
+    private TMP_Text item2CostText;
+    private TMP_Text item3CostText;
+
 
     private bool shopIsOpen = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemySpawners = GameObject.Find("EnemySpawners");
-        enemySpawnerScript = enemySpawners.GetComponent<EnemySpawner>();
+        GetReferences();
     }
 
     // Update is called once per frame
@@ -34,9 +57,78 @@ public class ShopScript : MonoBehaviour
         }
     }
 
+    void GetReferences() 
+    {
+        enemySpawners = GameObject.Find("EnemySpawners");
+        enemySpawnerScript = enemySpawners.GetComponent<EnemySpawner>();
+
+        player = GameObject.FindWithTag("Player");
+        gun = GameObject.Find("GunNozzle");
+
+        bulletScript = bullet.GetComponent<BulletBehaviour>();
+        aimingScript = gun.GetComponent<Aiming>();
+        itemScript = player.GetComponent<ItemTracker>();
+        playerHealthScript = player.GetComponent<PlayerHealth>();
+    }
+
+    void GetShopUIReferences()
+    {
+        item1Text = GameObject.Find("Image1").GetComponentInChildren<TMP_Text>();
+        item2Text = GameObject.Find("Image2").GetComponentInChildren<TMP_Text>();
+        item3Text = GameObject.Find("Image3").GetComponentInChildren<TMP_Text>();
+
+        item1CostText = GameObject.Find("ButtonBuy1").GetComponentInChildren<TMP_Text>();
+        item2CostText = GameObject.Find("ButtonBuy2").GetComponentInChildren<TMP_Text>();
+        item3CostText = GameObject.Find("ButtonBuy3").GetComponentInChildren<TMP_Text>();
+    }
+
+    void ListItems()
+    {
+        Item damageUp = new(bulletScript.BulletDamage, 5, 0.1f, $"Increase damage dealt by {0} %");
+        Item fireRateUp = new(aimingScript.FireRate, 5, 0.1f, $"Increase weapon fire rate by {0} %");
+        Item maxTeleportUp = new(itemScript.MaxTeleports, 5, 1, $"Increase teleport item slots by {0}");
+        Item maxHealthUp = new(playerHealthScript.MaxHealth, 5, 0, $"Increase max health by {0} %");
+
+        items = new List<Item>
+        {
+            damageUp,
+            fireRateUp,
+            maxTeleportUp,
+            maxHealthUp
+        };
+    }
+
+    void GenerateShopItems()
+    {
+        ListItems();
+
+        while (shopItems.Count <= 3)
+        {
+            int itemIndex = UnityEngine.Random.Range(0, items.Count);
+            shopItems.Add(items[itemIndex]);
+            items.Remove(items[itemIndex]);
+        }
+    }
+
+    void DisplayItems()
+    {
+        GetShopUIReferences();
+        GenerateShopItems();
+
+        item1Text.SetText(shopItems[0].description);
+        item2Text.SetText(shopItems[1].description);
+        item3Text.SetText(shopItems[2].description);
+
+        item1CostText.SetText($"{shopItems[0].cost}");
+        item2CostText.SetText($"{shopItems[1].cost}");
+        item3CostText.SetText($"{shopItems[2].cost}");
+    }
+
+
     public void OpenShop()
     {
         shopUI.SetActive(true);
+        DisplayItems();
         shopIsOpen = true;
     }
 
@@ -45,4 +137,23 @@ public class ShopScript : MonoBehaviour
         shopUI.SetActive(false);
         shopIsOpen = false;
     }
+
+}
+
+public class Item
+{
+    public float upgrade;
+    public int cost;
+    public float multiplier;
+    public string description;
+
+    public Item(float upgrade, int cost, float multiplier, string description) 
+    {
+        this.upgrade = upgrade;
+        this.cost = cost;
+        this.multiplier = multiplier;
+        this.description = description;
+    }
+
+    // Make RiseCost() method
 }

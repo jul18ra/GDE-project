@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         //playerSprite = gameObject.GetComponent<SpriteRenderer>();
         playerHealth = gameObject.GetComponent<PlayerHealth>();
-        itemTracker = gameObject.GetComponent<ItemTracker>();   
+        itemTracker = gameObject.GetComponent<ItemTracker>();
     }
 
     void Update()

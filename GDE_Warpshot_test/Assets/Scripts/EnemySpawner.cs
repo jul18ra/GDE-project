@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
 
     private int waveValue;
     private int waveCount = 1;
-    private int waveDuration = 45;
+    private int waveDuration = 10; // 45
     private float waveTimer;
     private bool waveEnded;
     public bool WaveEnded { get { return waveEnded; } set { waveEnded = value; } }
