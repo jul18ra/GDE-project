@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private PlayerHealth playerHealth;
     private ItemTracker itemTracker;
 
+    private Animator playerAnim;
+
     private int playerLayer;
     private int enemyLayer;
 
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
         //playerSprite = gameObject.GetComponent<SpriteRenderer>();
         playerHealth = gameObject.GetComponent<PlayerHealth>();
         itemTracker = gameObject.GetComponent<ItemTracker>();
+        playerAnim = gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -52,16 +55,12 @@ public class PlayerController : MonoBehaviour
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             itemTracker.CurrentTeleports--;
             teleporting = true;
-        }
+            playerAnim.SetBool("isTeleporting", true);
 
-        // Teleports player to cursor position
-        if (teleporting & transform.position != mousePos)
-        {
-            Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
-            transform.position = Vector3.MoveTowards(transform.position, mousePos, Time.deltaTime * teleportSpeed);
         }
         else
         {
+            playerAnim.SetBool("reachedDestination", true);
             teleporting = false;
             Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);
             previousPos = transform.position;
@@ -119,6 +118,11 @@ public class PlayerController : MonoBehaviour
             }
         }
        
+    }
+
+    public void Teleport()
+    {
+        transform.position = mousePos;
     }
 
     private void OnMouseOver()
