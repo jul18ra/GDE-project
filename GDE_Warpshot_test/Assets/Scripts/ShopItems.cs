@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Item
 {
@@ -97,7 +98,8 @@ public class FireRateUpItem : Item
 
     public override void UpgradeStats()
     {
-        base.UpgradeStats();
+        upgrade -= upgrade * multiplier;
+        RaiseCost();
 
         gun = GameObject.Find("GunNozzle");
         aimingScript = gun.GetComponent<Aiming>();
@@ -135,6 +137,63 @@ public class HealthUpItem : Item
         description = $"Max health increased by {descriptionMultiplier}";
     }
 }
+
+public class HpDropRateUpItem : Item
+{
+    private GameObject shop;
+    private ShopScript shopScript;
+    private GameObject enemy;
+    private LootDropScript lootDropScript;
+
+    public HpDropRateUpItem(float upgrade, int cost) : base(upgrade, cost)
+    {
+        description = $"Teleport vial drop rate increased by {descriptionMultiplier}";
+    }
+    public override void UpgradeStats()
+    {
+        base.UpgradeStats();
+
+        shop = GameObject.Find("Shop");
+        shopScript = shop.GetComponent<ShopScript>();
+        enemy = shopScript.enemy;
+        lootDropScript = enemy.GetComponent<LootDropScript>();
+
+        lootDropScript.TpDropRate = upgrade;
+    }
+    protected override void UpdateDescription()
+    {
+        description = $"Teleport vial drop rate increased by {descriptionMultiplier}";
+    }
+}
+
+public class TpDropRateUpItem : Item
+{
+    private GameObject shop;
+    private ShopScript shopScript;
+    private GameObject enemy;
+    private LootDropScript lootDropScript;
+
+    public TpDropRateUpItem(float upgrade, int cost) : base(upgrade, cost)
+    {
+        description = $"Health vial drop rate increased by {descriptionMultiplier}";
+    }
+    public override void UpgradeStats()
+    {
+        base.UpgradeStats();
+
+        shop = GameObject.Find("Shop");
+        shopScript = shop.GetComponent<ShopScript>();
+        enemy = shopScript.enemy;
+        lootDropScript = enemy.GetComponent<LootDropScript>();
+
+        lootDropScript.HpDropRate = upgrade;
+    }
+    protected override void UpdateDescription()
+    {
+        description = $"Health vial drop rate increased by {descriptionMultiplier}";
+    }
+}
+
 
 public class TeleportUpItem : Item
 {

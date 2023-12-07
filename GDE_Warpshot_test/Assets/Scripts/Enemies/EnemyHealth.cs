@@ -10,13 +10,7 @@ public class EnemyHealth : MonoBehaviour
 {
     private GameObject enemySpawners;
     private EnemySpawner enemySpawnerScript;
-
-    public GameObject robotPart;
-    public GameObject tpItem;
-    public GameObject hpItem;
-
-    private float tpDropRate = 0.1f;
-    private float hpDropRate = 0.1f;
+    private LootDropScript lootDropScript;
 
     private SpriteRenderer enemySprite;
 
@@ -33,6 +27,7 @@ public class EnemyHealth : MonoBehaviour
     {
         enemySpawners = GameObject.Find("EnemySpawners");
         enemySpawnerScript = enemySpawners.GetComponent<EnemySpawner>();
+        lootDropScript = gameObject.GetComponent<LootDropScript>();
 
         if (gameObject.name == "RobotSpider(Clone)")
         {
@@ -61,44 +56,11 @@ public class EnemyHealth : MonoBehaviour
 
         if(currentHealth <= 0) 
         {
-            DropLoot();
+            lootDropScript.DropLoot();
             enemySpawnerScript.SpawnedEnemies--;
             Destroy(gameObject);
         }
     }
-
-    private void DropRobotPart()
-    {
-        if (gameObject.name == "RobotSpider(Clone)")
-        {
-            Instantiate(robotPart, transform.position, transform.rotation);
-        }
-
-        if (gameObject.name == "RobotGiant(Clone)")
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                Instantiate(robotPart, transform.position, transform.rotation);
-            }
-        }
-
-    }
-
-    private void DropItem(GameObject item, float dropRate)
-    {
-        if (Random.Range(0f, 1f) <= dropRate)
-        {
-            Instantiate(item, transform.position, transform.rotation);
-        }
-    }
-
-    private void DropLoot()
-    {
-        DropRobotPart();
-        DropItem(tpItem, tpDropRate);
-        DropItem(hpItem, hpDropRate);
-    }
-
 
     IEnumerator FlashRed()
     {

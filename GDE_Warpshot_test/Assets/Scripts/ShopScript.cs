@@ -16,12 +16,14 @@ public class ShopScript : MonoBehaviour
 
     private GameObject player;
     private GameObject gun;
+    public GameObject enemy;
     public GameObject bullet;
 
     private BulletBehaviour bulletScript;
     private Aiming aimingScript;
     private ItemTracker itemScript;
     private PlayerHealth playerHealthScript;
+    private LootDropScript lootDropScript;
 
     private List<Item> items;
     private List<Item> shopItems = new();
@@ -76,6 +78,7 @@ public class ShopScript : MonoBehaviour
         aimingScript = gun.GetComponent<Aiming>();
         itemScript = player.GetComponent<ItemTracker>();
         playerHealthScript = player.GetComponent<PlayerHealth>();
+        lootDropScript = enemy.GetComponent<LootDropScript>();
     }
 
     void GetShopUIReferences()
@@ -97,6 +100,9 @@ public class ShopScript : MonoBehaviour
         FireRateUpItem fireRateUp = new(aimingScript.FireRate, 5);
         TeleportUpItem maxTeleportUp = new(itemScript.MaxTeleports, 5);
         HealthUpItem maxHealthUp = new(playerHealthScript.MaxHealth, 5);
+        HpDropRateUpItem hpDropRateUp = new(lootDropScript.HpDropRate, 5);
+        TpDropRateUpItem tpDropRateUp = new(lootDropScript.TpDropRate, 5);
+
         // Item dropRatehUp = new(script.DropRate, 5, $"Increase enemy drop rate by ");
 
         items = new List<Item>
@@ -104,7 +110,9 @@ public class ShopScript : MonoBehaviour
             damageUp,
             fireRateUp,
             maxTeleportUp,
-            maxHealthUp
+            maxHealthUp,
+            hpDropRateUp,
+            tpDropRateUp,
         };
     }
 

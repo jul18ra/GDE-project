@@ -9232,6 +9232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9534d7d6c8df8e4f9c80d5fe1d0d977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 6397064153773469443, guid: 6de8c393350754d4f9430665f94aa58d, type: 3}
   bullet: {fileID: 7328392015338922199, guid: a21d353595df2e54683dc705b45e7eb2, type: 3}
   openShopPrompt: {fileID: 1974455432}
   shopUI: {fileID: 1044146806}

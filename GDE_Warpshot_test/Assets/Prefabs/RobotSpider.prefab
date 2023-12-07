@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: -8960835322871574496}
   - component: {fileID: 8611745405560428800}
   - component: {fileID: 5166495158273412153}
+  - component: {fileID: -2770090317857350895}
   m_Layer: 8
   m_Name: RobotSpider
   m_TagString: Enemy
@@ -311,9 +312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680f697bb0ab67541bf0d5ad3980a1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  robotPart: {fileID: 3121831144685239243, guid: d718578e3aa3fe24f8785dba08a9f157, type: 3}
-  tpItem: {fileID: 2299863770480619393, guid: 3e40a436e7428284c846f5ae7b91483e, type: 3}
-  hpItem: {fileID: 6391990842059299154, guid: ad1eb9bfe098c51418173924843eb61d, type: 3}
 --- !u!60 &5166495158273412153
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -475,3 +473,18 @@ PolygonCollider2D:
       - {x: -2.35, y: -1.48}
       - {x: -2.3, y: -1.3199999}
   m_UseDelaunayMesh: 0
+--- !u!114 &-2770090317857350895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8578914183583813081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43783f417be47014f9a8de63af5d6c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robotPart: {fileID: 3121831144685239243, guid: d718578e3aa3fe24f8785dba08a9f157, type: 3}
+  tpItem: {fileID: 2299863770480619393, guid: 3e40a436e7428284c846f5ae7b91483e, type: 3}
+  hpItem: {fileID: 6391990842059299154, guid: ad1eb9bfe098c51418173924843eb61d, type: 3}
