@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -25,6 +26,8 @@ public class Item
 
     protected int timesPurchased = 1;
 
+    protected float identifier;
+    public float Indentifier { get { return identifier; } }
 
     public Item(float upgrade, int cost)
     {
@@ -45,9 +48,8 @@ public class Item
     public virtual void UpgradeStats()
     {
         upgrade += upgrade * multiplier;
-        RaiseCost();
     }
-    protected void RaiseCost()
+    public void RaiseCost()
     {
         timesPurchased++;
         cost *= timesPurchased;
@@ -65,6 +67,7 @@ public class DamageUpItem : Item
     public DamageUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
         description = $"Damage dealt increased by {descriptionMultiplier}";
+        identifier = 1;
     }
 
     public override void UpgradeStats()
@@ -94,12 +97,12 @@ public class FireRateUpItem : Item
     public FireRateUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
         description = $"Weapon fire rate increased by {descriptionMultiplier}";
+        identifier = 2;
     }
 
     public override void UpgradeStats()
     {
         upgrade -= upgrade * multiplier;
-        RaiseCost();
 
         gun = GameObject.Find("GunNozzle");
         aimingScript = gun.GetComponent<Aiming>();
@@ -120,6 +123,7 @@ public class HealthUpItem : Item
     public HealthUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
         description = $"Max health increased by {descriptionMultiplier}";
+        identifier = 3;
     }
 
     public override void UpgradeStats()
@@ -148,6 +152,7 @@ public class HpDropRateUpItem : Item
     public HpDropRateUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
         description = $"Teleport vial drop rate increased by {descriptionMultiplier}";
+        identifier = 4;
     }
     public override void UpgradeStats()
     {
@@ -176,6 +181,7 @@ public class TpDropRateUpItem : Item
     public TpDropRateUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
         description = $"Health vial drop rate increased by {descriptionMultiplier}";
+        identifier = 5;
     }
     public override void UpgradeStats()
     {
@@ -204,6 +210,7 @@ public class TeleportUpItem : Item
     {
         multiplier = 1;
         description = "Increase teleport item slots by 1";
+        identifier = 6;
     }
 
     public override void UpgradeStats()
@@ -214,7 +221,6 @@ public class TeleportUpItem : Item
         upgrade += multiplier;
         itemScript.MaxTeleports = upgrade;
         itemScript.CurrentTeleports = upgrade;
-        RaiseCost();
     }
 
     public override void RandomiseMultiplier()

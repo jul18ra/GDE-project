@@ -27,6 +27,7 @@ public class ShopScript : MonoBehaviour
 
     private List<Item> items;
     private List<Item> shopItems = new();
+    private List<Item> itemsCopy = new();
 
     public GameObject openShopPrompt;
     public GameObject shopUI;
@@ -50,6 +51,7 @@ public class ShopScript : MonoBehaviour
     void Start()
     {
         GetReferences();
+        ListItems();
     }
 
     // Update is called once per frame
@@ -103,8 +105,6 @@ public class ShopScript : MonoBehaviour
         HpDropRateUpItem hpDropRateUp = new(lootDropScript.HpDropRate, 5);
         TpDropRateUpItem tpDropRateUp = new(lootDropScript.TpDropRate, 5);
 
-        // Item dropRatehUp = new(script.DropRate, 5, $"Increase enemy drop rate by ");
-
         items = new List<Item>
         {
             damageUp,
@@ -114,6 +114,14 @@ public class ShopScript : MonoBehaviour
             hpDropRateUp,
             tpDropRateUp,
         };
+    }
+
+    void CloneItemList()
+    {
+        foreach (Item item in items)
+        {
+            itemsCopy.Add(item);
+        }
     }
 
     void ListText()
@@ -135,21 +143,22 @@ public class ShopScript : MonoBehaviour
 
     void GenerateShopItems()
     {
-        ListItems();
+        CloneItemList();
 
         while (shopItems.Count <= 3)
         {
-            int itemIndex = UnityEngine.Random.Range(0, items.Count);
-            shopItems.Add(items[itemIndex]);
-            items.Remove(items[itemIndex]);
+            int itemIndex = UnityEngine.Random.Range(0, itemsCopy.Count);
+            shopItems.Add(itemsCopy[itemIndex]);
+            itemsCopy.Remove(itemsCopy[itemIndex]);
         }
+
+        itemsCopy.Clear();
     }
 
     void DisplayItems()
     {
         GetShopUIReferences();
         GenerateShopItems();
-        ListItems();
 
         int n = 0;
         foreach (var itemText in itemTextList)
@@ -189,9 +198,14 @@ public class ShopScript : MonoBehaviour
         shopUI.SetActive(false);
         shopIsOpen = false;
         openShopPrompt.SetActive(true);
-        enemySpawnerScript.WaveEnded = false;
-        enemySpawnerScript.StartWave();
+        NewWave();
+    }
 
+    private void NewWave()
+    {
+        enemySpawnerScript.WaveEnded = false;
+        shopItems.Clear();
+        enemySpawnerScript.StartWave();
     }
 
     public void BuyItem(int itemIndex)
@@ -200,6 +214,14 @@ public class ShopScript : MonoBehaviour
         {
             // Deduct cost from total part amount
             itemScript.PartAmount -= shopItems[itemIndex].Cost;
+
+            foreach (Item item in items) 
+            { 
+                if (shopItems[itemIndex].Indentifier == item.Indentifier)
+                {
+                    item.RaiseCost();
+                }
+            }
 
             shopItems[itemIndex].UpgradeStats();
             UpdateCost();
