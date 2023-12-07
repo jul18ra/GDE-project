@@ -185,6 +185,10 @@ public class ShopScript : MonoBehaviour
     {
         shopUI.SetActive(false);
         shopIsOpen = false;
+        openShopPrompt.SetActive(true);
+        enemySpawnerScript.WaveEnded = false;
+        enemySpawnerScript.StartWave();
+
     }
 
     public void BuyItem(int itemIndex)

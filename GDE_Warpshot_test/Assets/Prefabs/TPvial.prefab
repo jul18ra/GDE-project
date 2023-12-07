@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 76568440037693215}
   m_Layer: 0
   m_Name: TPvial
-  m_TagString: TP
+  m_TagString: TeleportItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

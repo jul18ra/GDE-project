@@ -18,12 +18,16 @@ public class EnemySpawner : MonoBehaviour
     private int enemy1cost = 1;
     private int enemy2cost = 3;
 
+    private bool displayWaveEnded;
+
     private int waveValue;
-    private int waveCount = 1;
-    private int waveDuration = 10; // 45
+    private int waveCount = 0;
+    private int waveDuration = 45;
     private float waveTimer;
     private bool waveEnded;
     public bool WaveEnded { get { return waveEnded; } set { waveEnded = value; } }
+    public int WaveCount { get { return waveCount; } }
+
 
 
     private float spawnTimer;
@@ -72,10 +76,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (waveTimer <= 0 & spawnedEnemies == 0) 
         {
-            // Debug.Log($"Wave {waveCount} has ended");
-            // waveCount++;
             waveEnded = true;
-            // StartWave();
         }
     }
 
@@ -107,8 +108,10 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void StartWave()
+    public void StartWave()
     {
+        waveCount++;
+        Debug.Log($"Wave {waveCount} has begun");
         GenerateEnemiesToSpawn();
         spawnRepeatRate = waveDuration / enemiesToSpawn.Count;
         waveTimer = waveDuration;
