@@ -181,7 +181,7 @@ public class ShopScript : MonoBehaviour
         int n = 0;
         foreach (var itemCostText in itemCostTextList)
         {
-            itemCostText.SetText($"{shopItems[n].Cost} parts");
+            itemCostText.SetText($"{shopItems[n].Cost}");
             n++;
         }
     }
