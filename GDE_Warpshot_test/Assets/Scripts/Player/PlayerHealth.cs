@@ -8,6 +8,10 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     private PlayerController playerController;
+
+    public GameObject gameOver;
+    private GameOverScript gameOverScript;
+
     //private SpriteRenderer playerSprite;
 
     private TMP_Text healthText;
@@ -28,6 +32,8 @@ public class PlayerHealth : MonoBehaviour
 
         healthText = GameObject.Find("HealthText").GetComponent<TMP_Text>();
 
+        gameOverScript = gameOver.GetComponent<GameOverScript>();
+
         //playerSprite = gameObject.GetComponent<SpriteRenderer>();
         playerController = gameObject.GetComponent<PlayerController>();
     }
@@ -46,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = 0;
             healthText.SetText($"Health: 0");
-            Time.timeScale = 0;
+            gameOverScript.GameOver();
         }
     }
 
