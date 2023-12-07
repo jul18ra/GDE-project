@@ -485,6 +485,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43783f417be47014f9a8de63af5d6c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  robotPart: {fileID: 3121831144685239243, guid: d718578e3aa3fe24f8785dba08a9f157, type: 3}
-  tpItem: {fileID: 2299863770480619393, guid: 3e40a436e7428284c846f5ae7b91483e, type: 3}
-  hpItem: {fileID: 6391990842059299154, guid: ad1eb9bfe098c51418173924843eb61d, type: 3}
+  robotPart: {fileID: 8908079784567721188, guid: d718578e3aa3fe24f8785dba08a9f157, type: 3}
+  tpItem: {fileID: 2569740251210680018, guid: 791d04f13ed4f4a41b1d94ffb3c8e681, type: 3}
+  hpItem: {fileID: 34828731531110426, guid: ed11ac45d698e7a4fa8f799111e3473a, type: 3}

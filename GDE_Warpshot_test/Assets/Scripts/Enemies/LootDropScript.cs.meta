@@ -3,7 +3,10 @@ guid: 43783f417be47014f9a8de63af5d6c9c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - robotPart: {fileID: 8908079784567721188, guid: d718578e3aa3fe24f8785dba08a9f157, type: 3}
+  - tpItem: {fileID: 2569740251210680018, guid: 791d04f13ed4f4a41b1d94ffb3c8e681, type: 3}
+  - hpItem: {fileID: 34828731531110426, guid: ed11ac45d698e7a4fa8f799111e3473a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
