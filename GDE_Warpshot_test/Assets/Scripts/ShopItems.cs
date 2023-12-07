@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class Item
@@ -14,7 +15,9 @@ public class Item
 
     protected string description;
 
-    public string Description { get { return description; } set { description = value; } }
+    public string Description { get { return description; } }
+
+    protected string descriptionMultiplier;
 
     protected float multiplier;
     public float Multiplier { get { return multiplier; } }
@@ -22,16 +25,20 @@ public class Item
     protected int timesPurchased = 1;
 
 
-    public Item(float upgrade, int cost, string description)
+    public Item(float upgrade, int cost)
     {
         this.upgrade = upgrade;
         this.cost = cost;
-        this.description = description;
     }
     public virtual void RandomiseMultiplier()
     {
         multiplier = UnityEngine.Random.Range(0.05f, 0.20f);
         multiplier = (float)Math.Round(multiplier, 2);
+        descriptionMultiplier = $"{multiplier * 100} %";
+        UpdateDescription();
+    }
+    protected virtual void UpdateDescription()
+    {
     }
 
     public virtual void UpgradeStats()
@@ -54,8 +61,9 @@ public class DamageUpItem : Item
     private GameObject bullet;
     private BulletBehaviour bulletScript;
 
-    public DamageUpItem(float upgrade, int cost, string description) : base(upgrade, cost, description)
+    public DamageUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
+        description = $"Damage dealt increased by {descriptionMultiplier}";
     }
 
     public override void UpgradeStats()
@@ -69,6 +77,12 @@ public class DamageUpItem : Item
         base.UpgradeStats();
         bulletScript.BulletDamage = upgrade;
     }
+
+    protected override void UpdateDescription()
+    {
+        description = $"Damage dealt increased by {descriptionMultiplier}";
+    }
+
 }
 
 public class FireRateUpItem : Item
@@ -76,8 +90,9 @@ public class FireRateUpItem : Item
     private GameObject gun;
     private Aiming aimingScript;
 
-    public FireRateUpItem(float upgrade, int cost, string description) : base(upgrade, cost, description)
+    public FireRateUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
+        description = $"Weapon fire rate increased by {descriptionMultiplier}";
     }
 
     public override void UpgradeStats()
@@ -89,6 +104,10 @@ public class FireRateUpItem : Item
 
         aimingScript.FireRate = upgrade;
     }
+    protected override void UpdateDescription()
+    {
+        description = $"Weapon fire rate increased by {descriptionMultiplier}";
+    }
 }
 
 public class HealthUpItem : Item
@@ -96,8 +115,9 @@ public class HealthUpItem : Item
     private GameObject player;
     private PlayerHealth playerHealthScript;
 
-    public HealthUpItem(float upgrade, int cost, string description) : base(upgrade, cost, description)
+    public HealthUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
+        description = $"Max health increased by {descriptionMultiplier}";
     }
 
     public override void UpgradeStats()
@@ -110,6 +130,10 @@ public class HealthUpItem : Item
         playerHealthScript.MaxHealth = upgrade;
         playerHealthScript.CurrentHealth = upgrade;
     }
+    protected override void UpdateDescription()
+    {
+        description = $"Max health increased by {descriptionMultiplier}";
+    }
 }
 
 public class TeleportUpItem : Item
@@ -117,9 +141,10 @@ public class TeleportUpItem : Item
     private GameObject player;
     private ItemTracker itemScript;
   
-    public TeleportUpItem(float upgrade, int cost, string description) : base(upgrade, cost, description)
+    public TeleportUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
         multiplier = 1;
+        description = "Increase teleport item slots by 1";
     }
 
     public override void UpgradeStats()

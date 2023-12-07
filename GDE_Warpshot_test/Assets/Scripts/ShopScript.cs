@@ -93,10 +93,10 @@ public class ShopScript : MonoBehaviour
 
     void ListItems()
     {
-        DamageUpItem damageUp = new(bulletScript.BulletDamage, 5, $"Increase damage dealt by ");
-        FireRateUpItem fireRateUp = new(aimingScript.FireRate, 5, $"Increase weapon fire rate by ");
-        TeleportUpItem maxTeleportUp = new(itemScript.MaxTeleports, 5, $"Increase teleport item slots by ");
-        HealthUpItem maxHealthUp = new(playerHealthScript.MaxHealth, 5, $"Increase max health by ");
+        DamageUpItem damageUp = new(bulletScript.BulletDamage, 5);
+        FireRateUpItem fireRateUp = new(aimingScript.FireRate, 5);
+        TeleportUpItem maxTeleportUp = new(itemScript.MaxTeleports, 5);
+        HealthUpItem maxHealthUp = new(playerHealthScript.MaxHealth, 5);
         // Item dropRatehUp = new(script.DropRate, 5, $"Increase enemy drop rate by ");
 
         items = new List<Item>
@@ -149,11 +149,6 @@ public class ShopScript : MonoBehaviour
             if (shopItems[n].GetType() != typeof(TeleportUpItem))
             {
                 shopItems[n].RandomiseMultiplier();
-                shopItems[n].Description += $"{shopItems[n].Multiplier * 100} %";
-            }
-            else
-            {
-                shopItems[n].Description += $"{shopItems[n].Multiplier}";
             }
 
             itemText.SetText(shopItems[n].Description);
