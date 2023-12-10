@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    private SpriteRenderer enemySr;
     private PlayerController PlayerController;
     private float speed;
     private Vector2 playerDirection;
@@ -14,6 +15,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        enemySr = GetComponent<SpriteRenderer>();
         enemyRb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
 
@@ -25,6 +27,18 @@ public class EnemyController : MonoBehaviour
         if (gameObject.name == "RobotGiant(Clone)")
         {
             speed = 4f;
+        }
+    }
+
+    private void Update()
+    {
+        if (player.transform.position.x > gameObject.transform.position.x)
+        {
+            enemySr.flipX = true;
+        }
+        else
+        {
+            enemySr.flipX = false;
         }
     }
 

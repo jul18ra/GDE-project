@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 5120472188711255328}
   - component: {fileID: 4110589569451442877}
   - component: {fileID: 3983592068823100941}
+  - component: {fileID: 5760164437407053143}
   m_Layer: 8
   m_Name: RobotGiant
   m_TagString: Enemy
@@ -202,7 +203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6397064153773469443}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.962, y: 3.342, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
@@ -780,3 +781,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a3369d7a7d5b24cb9597612fc659cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &5760164437407053143
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397064153773469443}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bfba9142c522da445bf00fb5b377c0c7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
