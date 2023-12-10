@@ -14,7 +14,6 @@ public class PlayerHealth : MonoBehaviour
 
     //private SpriteRenderer playerSprite;
 
-    // private TMP_Text healthText;
     public Image healthBar;
 
     private float maxHealth = 10;
@@ -23,16 +22,12 @@ public class PlayerHealth : MonoBehaviour
     private float currentHealth;
     public float CurrentHealth { get { return currentHealth; } set { currentHealth = value; } }
 
-    //private bool teleporting;
     //private bool flashing;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
-
-        // healthText = GameObject.Find("HealthText").GetComponent<TMP_Text>();
-
 
         gameOverScript = gameOver.GetComponent<GameOverScript>();
 
@@ -53,7 +48,6 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            // healthText.SetText($"Health: 0");
             gameOverScript.GameOver();
         }
     }

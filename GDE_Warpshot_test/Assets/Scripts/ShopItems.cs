@@ -230,6 +230,7 @@ public class TeleportUpItem : Item
         upgrade += multiplier;
         itemScript.MaxTeleports = upgrade;
         itemScript.CurrentTeleports = upgrade;
+        itemScript.UpdateTeleportCount();
     }
 
     public override void RandomiseMultiplier()

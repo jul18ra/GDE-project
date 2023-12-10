@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class ItemTracker : MonoBehaviour
 {
-    private TMP_Text tpText;
+    private Image tpTileEmpty;
+    private Image tpTileFull;
+    private float tileSize = 140;
+    private float maxSize;
+    private float currentSize;
+
     private TMP_Text partText;
 
     private float maxTeleports = 3;
@@ -21,18 +28,31 @@ public class ItemTracker : MonoBehaviour
     public int PartAmount { get { return partAmount; } set { partAmount = value; } }
 
 
+
     void Start()
     {
         currentTeleports = maxTeleports;
-        tpText = GameObject.Find("TpText").GetComponent<TMP_Text>();
         partText = GameObject.Find("PartText").GetComponent<TMP_Text>();
+        tpTileEmpty = GameObject.Find("Empty").GetComponent<Image>();
+        tpTileFull = GameObject.Find("Full").GetComponent<Image>();
 
+        maxSize = maxTeleports * tileSize;
+        currentSize = currentTeleports * tileSize;
+
+        tpTileEmpty.rectTransform.sizeDelta = new Vector2(maxSize, tileSize);
+        tpTileFull.rectTransform.sizeDelta = new Vector2(maxSize, tileSize);
+
+    }
+
+    public void UpdateTeleportCount()
+    {
+        currentSize = currentTeleports * tileSize;
+        tpTileFull.rectTransform.sizeDelta = new Vector2(currentSize, tileSize);
     }
 
     // Update is called once per frame
     void Update()
     {
-        tpText.SetText($"Teleports: {currentTeleports}");
         partText.SetText($"{partAmount}");
 
         if (currentTeleports <= 0)

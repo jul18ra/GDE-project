@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             itemTracker.CurrentTeleports--;
+            itemTracker.UpdateTeleportCount();
             teleporting = true;
             playerAnim.SetBool("isTeleporting", true);
 
@@ -86,6 +87,7 @@ public class PlayerController : MonoBehaviour
             if (other.CompareTag("TeleportItem") & itemTracker.CurrentTeleports < itemTracker.MaxTeleports)
             {
                 itemTracker.CurrentTeleports++;
+                itemTracker.UpdateTeleportCount();
                 Destroy(other.gameObject);
             }
 
