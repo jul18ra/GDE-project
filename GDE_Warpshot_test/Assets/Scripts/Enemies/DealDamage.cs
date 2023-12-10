@@ -5,8 +5,10 @@ using UnityEngine;
 public class DealDamage : MonoBehaviour
 {
     private PlayerHealth playerHealth;
+    private PlayerController playerController;
     private GameObject player;
     private bool canTakeDamage = true;
+    private bool damageTimerRunning;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,18 @@ public class DealDamage : MonoBehaviour
     {
         player = GameObject.Find("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
+        playerController = player.GetComponent<PlayerController>();
+
+        if (playerController.Teleporting)
+        {
+            canTakeDamage = false;
+        }
+        else if(!damageTimerRunning)
+        {
+            canTakeDamage = true;
+
+        }
+
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -38,9 +52,11 @@ public class DealDamage : MonoBehaviour
 
     private IEnumerator damageTimer()
     {
+        damageTimerRunning = true;  
         canTakeDamage = false;
         yield return new WaitForSeconds(0.7f);
         canTakeDamage = true;
+        damageTimerRunning = false;
     }
 
 }

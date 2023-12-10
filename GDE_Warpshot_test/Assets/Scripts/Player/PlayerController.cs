@@ -14,9 +14,6 @@ public class PlayerController : MonoBehaviour
 
     private Animator playerAnim;
 
-    private int playerLayer;
-    private int enemyLayer;
-
     public Rigidbody2D playerRb;
     private float moveSpeed = 10f;
 
@@ -48,9 +45,6 @@ public class PlayerController : MonoBehaviour
             movement.y = Input.GetAxisRaw("Vertical");
         }
 
-        playerLayer = LayerMask.NameToLayer("Player");
-        enemyLayer = LayerMask.NameToLayer("Enemy");
-
         // Teleports player when right click 
         if (Input.GetMouseButtonDown(1) & itemTracker.CanTeleport)
         {
@@ -63,7 +57,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             playerAnim.SetBool("reachedDestination", true);
-            Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);
             previousPos = transform.position;
         }
 
