@@ -114,9 +114,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1532
-        width: 254
-        height: 383
+        y: 612.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: tankIdle_1
       rect:
         serializedVersion: 2
-        x: 254
-        y: 1532
-        width: 254
-        height: 383
+        x: 101
+        y: 612.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,10 +155,10 @@ TextureImporter:
       name: tankIdle_2
       rect:
         serializedVersion: 2
-        x: 508
-        y: 1532
-        width: 254
-        height: 383
+        x: 202
+        y: 612.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,10 +176,10 @@ TextureImporter:
       name: tankIdle_3
       rect:
         serializedVersion: 2
-        x: 762
-        y: 1532
-        width: 254
-        height: 383
+        x: 303
+        y: 612.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: tankIdle_4
       rect:
         serializedVersion: 2
-        x: 1016
-        y: 1532
-        width: 254
-        height: 383
+        x: 404
+        y: 612.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,9 +219,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1149
-        width: 254
-        height: 383
+        y: 459.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,10 +239,10 @@ TextureImporter:
       name: tankIdle_6
       rect:
         serializedVersion: 2
-        x: 254
-        y: 1149
-        width: 254
-        height: 383
+        x: 101
+        y: 459.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,10 +260,10 @@ TextureImporter:
       name: tankIdle_7
       rect:
         serializedVersion: 2
-        x: 508
-        y: 1149
-        width: 254
-        height: 383
+        x: 202
+        y: 459.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,10 +281,10 @@ TextureImporter:
       name: tankIdle_8
       rect:
         serializedVersion: 2
-        x: 762
-        y: 1149
-        width: 254
-        height: 383
+        x: 303
+        y: 459.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -302,10 +302,10 @@ TextureImporter:
       name: tankIdle_9
       rect:
         serializedVersion: 2
-        x: 1016
-        y: 1149
-        width: 254
-        height: 383
+        x: 404
+        y: 459.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -324,9 +324,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 766
-        width: 254
-        height: 383
+        y: 306.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -344,10 +344,10 @@ TextureImporter:
       name: tankIdle_11
       rect:
         serializedVersion: 2
-        x: 254
-        y: 766
-        width: 254
-        height: 383
+        x: 101
+        y: 306.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,10 +365,10 @@ TextureImporter:
       name: tankIdle_12
       rect:
         serializedVersion: 2
-        x: 508
-        y: 766
-        width: 254
-        height: 383
+        x: 202
+        y: 306.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -386,10 +386,10 @@ TextureImporter:
       name: tankIdle_13
       rect:
         serializedVersion: 2
-        x: 762
-        y: 766
-        width: 254
-        height: 383
+        x: 303
+        y: 306.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -407,10 +407,10 @@ TextureImporter:
       name: tankIdle_14
       rect:
         serializedVersion: 2
-        x: 1016
-        y: 766
-        width: 254
-        height: 383
+        x: 404
+        y: 306.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -429,9 +429,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 383
-        width: 254
-        height: 383
+        y: 153.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -449,10 +449,10 @@ TextureImporter:
       name: tankIdle_16
       rect:
         serializedVersion: 2
-        x: 254
-        y: 383
-        width: 254
-        height: 383
+        x: 101
+        y: 153.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -470,10 +470,10 @@ TextureImporter:
       name: tankIdle_17
       rect:
         serializedVersion: 2
-        x: 508
-        y: 383
-        width: 254
-        height: 383
+        x: 202
+        y: 153.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -491,10 +491,10 @@ TextureImporter:
       name: tankIdle_18
       rect:
         serializedVersion: 2
-        x: 762
-        y: 383
-        width: 254
-        height: 383
+        x: 303
+        y: 153.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -512,10 +512,10 @@ TextureImporter:
       name: tankIdle_19
       rect:
         serializedVersion: 2
-        x: 1016
-        y: 383
-        width: 254
-        height: 383
+        x: 404
+        y: 153.8
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -534,9 +534,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 254
-        height: 383
+        y: 0.80000305
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -554,10 +554,10 @@ TextureImporter:
       name: tankIdle_21
       rect:
         serializedVersion: 2
-        x: 254
-        y: 0
-        width: 254
-        height: 383
+        x: 101
+        y: 0.80000305
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -575,10 +575,10 @@ TextureImporter:
       name: tankIdle_22
       rect:
         serializedVersion: 2
-        x: 508
-        y: 0
-        width: 254
-        height: 383
+        x: 202
+        y: 0.80000305
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -596,10 +596,10 @@ TextureImporter:
       name: tankIdle_23
       rect:
         serializedVersion: 2
-        x: 762
-        y: 0
-        width: 254
-        height: 383
+        x: 303
+        y: 0.80000305
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -617,10 +617,10 @@ TextureImporter:
       name: tankIdle_24
       rect:
         serializedVersion: 2
-        x: 1016
-        y: 0
-        width: 254
-        height: 383
+        x: 404
+        y: 0.80000305
+        width: 101.6
+        height: 153.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
