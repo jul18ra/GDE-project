@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D playerRb;
     private float moveSpeed = 10f;
-    private float teleportSpeed = 30f;
 
     private Vector3 previousPos;
     public Vector3 PreviousPos { get { return previousPos; } }
@@ -75,22 +74,6 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.MovePosition(playerRb.position + moveSpeed * Time.fixedDeltaTime * movement.normalized);
 
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.collider.CompareTag("Enemy"))
-        {
-            if (other.collider.name == "RobotSpider(Clone)")
-            {
-                playerHealth.TakeDamage(1);
-            }
-
-            if (other.collider.name == "RobotGiant(Clone)")
-            {
-                playerHealth.TakeDamage(3);
-            }
         }
     }
 

@@ -10,7 +10,6 @@ TagManager:
   - TeleportItem
   - EnemyPart
   - TP
-  - PlayerBody
   layers:
   - Default
   - TransparentFX

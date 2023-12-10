@@ -73,7 +73,7 @@ public class ShopScript : MonoBehaviour
         enemySpawners = GameObject.Find("EnemySpawners");
         enemySpawnerScript = enemySpawners.GetComponent<EnemySpawner>();
 
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.Find("Player");
         gun = GameObject.Find("GunNozzle");
 
         bulletScript = bullet.GetComponent<BulletBehaviour>();

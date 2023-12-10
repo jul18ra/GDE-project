@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 8611745405560428800}
   - component: {fileID: 5166495158273412153}
   - component: {fileID: -2770090317857350895}
+  - component: {fileID: -6859217172602719795}
   m_Layer: 8
   m_Name: RobotSpider
   m_TagString: Enemy
@@ -488,3 +489,15 @@ MonoBehaviour:
   robotPart: {fileID: 8908079784567721188, guid: d718578e3aa3fe24f8785dba08a9f157, type: 3}
   tpItem: {fileID: 2569740251210680018, guid: 791d04f13ed4f4a41b1d94ffb3c8e681, type: 3}
   hpItem: {fileID: 34828731531110426, guid: ed11ac45d698e7a4fa8f799111e3473a, type: 3}
+--- !u!114 &-6859217172602719795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8578914183583813081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a3369d7a7d5b24cb9597612fc659cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

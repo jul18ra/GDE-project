@@ -21,7 +21,7 @@ public class EnterTeleportAnim : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
 
         playerController.Teleport();

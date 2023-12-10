@@ -130,7 +130,7 @@ public class HealthUpItem : Item
     {
         base.UpgradeStats();
 
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.Find("Player");
         playerHealthScript = player.GetComponent<PlayerHealth>();
 
         playerHealthScript.MaxHealth = upgrade;
@@ -215,7 +215,7 @@ public class TeleportUpItem : Item
 
     public override void UpgradeStats()
     {
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.Find("Player");
         itemScript = player.GetComponent<ItemTracker>();
 
         upgrade += multiplier;
