@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 mousePos;
 
     private bool teleporting;
-    public bool Teleporting {  get { return teleporting; } }
+    public bool Teleporting { get { return teleporting; } set { teleporting = value; } }
 
     private bool canShoot = true;
     public bool CanShoot { get { return canShoot; } set { canShoot = value; } }
@@ -42,8 +42,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        if (!teleporting)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+        }
 
         playerLayer = LayerMask.NameToLayer("Player");
         enemyLayer = LayerMask.NameToLayer("Enemy");
@@ -60,7 +63,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             playerAnim.SetBool("reachedDestination", true);
-            teleporting = false;
             Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);
             previousPos = transform.position;
         }

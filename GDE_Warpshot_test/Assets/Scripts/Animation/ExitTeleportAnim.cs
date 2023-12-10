@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ExitTeleportAnim : StateMachineBehaviour
 {
+    private GameObject player;
+    private PlayerController playerController;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -18,10 +21,14 @@ public class ExitTeleportAnim : StateMachineBehaviour
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{        
-    //}
-    
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        player = GameObject.Find("Player");
+        playerController = player.GetComponent<PlayerController>();
+
+        playerController.Teleporting = false;   
+    }
+
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
