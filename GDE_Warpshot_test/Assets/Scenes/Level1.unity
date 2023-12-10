@@ -498,7 +498,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1804757053
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 848966464, guid: bee5ad9dd29f9d048aa7ccac653b2e18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9072,7 +9072,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1804757053
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 985791045, guid: d74682068a354c4418a71fd6b0c0499b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14197,7 +14197,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -16094,7 +16094,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.5056838, y: 0.48702085}
@@ -17028,7 +17028,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1804757053
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 4d8124c7b88406f4f96bb0b35391bd84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17276,7 +17276,7 @@ Transform:
   m_GameObject: {fileID: 1895092651}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 1.5, z: 0}
+  m_LocalPosition: {x: -0.03, y: 0.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17643,8 +17643,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1085737881
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1885700959, guid: 04c1306beb2dd194a8c8f7e210e7348e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
