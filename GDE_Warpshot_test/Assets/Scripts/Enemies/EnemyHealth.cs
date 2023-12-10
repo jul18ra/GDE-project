@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR;
 
 public class EnemyHealth : MonoBehaviour
@@ -14,9 +15,7 @@ public class EnemyHealth : MonoBehaviour
 
     private SpriteRenderer enemySprite;
 
-    private GameObject textObj;
-
-    private TMP_Text healthText;
+    public Image healthBar; 
 
     private float maxHealth;
     private float currentHealth;
@@ -41,9 +40,7 @@ public class EnemyHealth : MonoBehaviour
 
         currentHealth = maxHealth;
 
-        textObj = gameObject.transform.GetChild(0).gameObject;
-        healthText = textObj.GetComponent<TMP_Text>();
-        healthText.SetText($"{currentHealth}/{maxHealth}");
+        healthBar.fillAmount = currentHealth / maxHealth;
 
         enemySprite = gameObject.GetComponent<SpriteRenderer>();
     }
@@ -51,7 +48,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        healthText.SetText($"{currentHealth}/{maxHealth}");
+        healthBar.fillAmount = currentHealth / maxHealth;
         StartCoroutine(FlashRed());
 
         if(currentHealth <= 0) 
