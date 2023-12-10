@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.Experimental.GraphView;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -14,7 +16,7 @@ public class Aiming : MonoBehaviour
     public GameObject projectilePrefab;
     private float timer;
 
-    private float fireRate = 0.2f;
+    private float fireRate = 0.3f;
     public float FireRate {  get { return fireRate; } set {  fireRate = value; } }
 
 

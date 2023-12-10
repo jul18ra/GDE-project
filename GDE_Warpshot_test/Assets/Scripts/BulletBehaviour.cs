@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using static UnityEngine.GraphicsBuffer;
 
 public class BulletBehaviour : MonoBehaviour
 
@@ -11,6 +12,7 @@ public class BulletBehaviour : MonoBehaviour
     private float force = 30f;
     private float destroyTime = 2.5f;
     private Vector2 aimDir;
+    private Vector3 rotation;
 
     private float bulletDamage = 2;
     public float BulletDamage {  get { return bulletDamage; } set {  bulletDamage = value; } }
@@ -20,6 +22,10 @@ public class BulletBehaviour : MonoBehaviour
         bulletRb = gameObject.GetComponent<Rigidbody2D>();
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         aimDir = mousePos - transform.position;
+
+        float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
         bulletRb.AddForce(aimDir.normalized * force, ForceMode2D.Impulse);
     }
 
