@@ -117,13 +117,17 @@ public class FireRateUpItem : Item
 
 public class HealthUpItem : Item
 {
+    private GameObject healthBar;
     private GameObject player;
     private PlayerHealth playerHealthScript;
+
+    private float startScaleX;
 
     public HealthUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
         description = $"Max health increased by {descriptionMultiplier}";
         identifier = 3;
+        startScaleX = 1;
     }
 
     public override void UpgradeStats()
@@ -132,9 +136,14 @@ public class HealthUpItem : Item
 
         player = GameObject.Find("Player");
         playerHealthScript = player.GetComponent<PlayerHealth>();
+        healthBar = GameObject.Find("HealthBar");
 
         playerHealthScript.MaxHealth = upgrade;
         playerHealthScript.CurrentHealth = upgrade;
+        Vector3 newScale = new Vector3((startScaleX += startScaleX * multiplier * 0.1f), 1, 1);
+        Debug.Log(newScale.x);
+        healthBar.transform.localScale = newScale;
+        startScaleX = newScale.x;
     }
     protected override void UpdateDescription()
     {

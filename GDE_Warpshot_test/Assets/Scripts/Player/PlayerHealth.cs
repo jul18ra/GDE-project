@@ -14,7 +14,8 @@ public class PlayerHealth : MonoBehaviour
 
     //private SpriteRenderer playerSprite;
 
-    private TMP_Text healthText;
+    // private TMP_Text healthText;
+    public Image healthBar;
 
     private float maxHealth = 10;
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
@@ -30,7 +31,8 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
 
-        healthText = GameObject.Find("HealthText").GetComponent<TMP_Text>();
+        // healthText = GameObject.Find("HealthText").GetComponent<TMP_Text>();
+
 
         gameOverScript = gameOver.GetComponent<GameOverScript>();
 
@@ -40,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        healthText.SetText($"Health: {currentHealth}");
+        healthBar.fillAmount = currentHealth / maxHealth;
     }
 
     public void TakeDamage(float damage)
@@ -51,10 +53,11 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            healthText.SetText($"Health: 0");
+            // healthText.SetText($"Health: 0");
             gameOverScript.GameOver();
         }
     }
+
 
     /* IEnumerator FlashRed()
     {
