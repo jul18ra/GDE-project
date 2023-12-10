@@ -33,7 +33,7 @@ public class ItemTracker : MonoBehaviour
     void Update()
     {
         tpText.SetText($"Teleports: {currentTeleports}");
-        partText.SetText($"Parts: {partAmount}");
+        partText.SetText($"{partAmount}");
 
         if (currentTeleports <= 0)
         {
