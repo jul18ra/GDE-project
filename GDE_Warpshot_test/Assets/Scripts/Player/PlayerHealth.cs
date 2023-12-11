@@ -33,16 +33,18 @@ public class PlayerHealth : MonoBehaviour
 
         //playerSprite = gameObject.GetComponent<SpriteRenderer>();
         playerController = gameObject.GetComponent<PlayerController>();
+
+        UpdateHealthBar();
     }
 
     private void Update()
     {
-        healthBar.fillAmount = currentHealth / maxHealth;
     }
 
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        UpdateHealthBar();
         //StartCoroutine(FlashRed());
 
         if (currentHealth <= 0)
@@ -52,6 +54,10 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void UpdateHealthBar()
+    {
+        healthBar.fillAmount = currentHealth / maxHealth;
+    }
 
     /* IEnumerator FlashRed()
     {

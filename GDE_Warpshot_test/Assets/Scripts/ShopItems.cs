@@ -143,6 +143,7 @@ public class HealthUpItem : Item
         Vector3 newScale = new Vector3((startScaleX += startScaleX * multiplier * 0.1f), 1, 1);
         healthBar.transform.localScale = newScale;
         startScaleX = newScale.x;
+        playerHealthScript.UpdateHealthBar();
     }
     protected override void UpdateDescription()
     {

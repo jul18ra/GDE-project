@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
             if (other.CompareTag("HP") & playerHealth.CurrentHealth < playerHealth.MaxHealth)
             {
                 playerHealth.CurrentHealth++;
+                playerHealth.UpdateHealthBar();
                 Destroy(other.gameObject);
             }
 
