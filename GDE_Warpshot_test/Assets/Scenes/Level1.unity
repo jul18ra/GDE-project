@@ -14295,6 +14295,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d464e86c63bb56447922e1a888712de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tpItemSound: {fileID: 8300000, guid: 573deed1be3d8a049b9128dc2cb309e0, type: 3}
+  hpItemSound: {fileID: 8300000, guid: 87814426c48ea324da91e8209267ab0f, type: 3}
+  roboPartSound: {fileID: 8300000, guid: 19af6ba1b85f9614d93b05fb29d57fb7, type: 3}
   playerRb: {fileID: 827524604}
 --- !u!4 &827524607
 Transform:

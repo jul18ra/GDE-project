@@ -7,6 +7,11 @@ public class PlayerController : MonoBehaviour
 
     private Animator playerAnim;
 
+    private AudioSource audioSource;
+    public AudioClip tpItemSound;
+    public AudioClip hpItemSound;
+    public AudioClip roboPartSound;
+
     public Rigidbody2D playerRb;
     private float moveSpeed = 10f;
 
@@ -24,10 +29,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        //playerSprite = gameObject.GetComponent<SpriteRenderer>();
         playerHealth = gameObject.GetComponent<PlayerHealth>();
         itemTracker = gameObject.GetComponent<ItemTracker>();
         playerAnim = gameObject.GetComponent<Animator>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -75,6 +80,7 @@ public class PlayerController : MonoBehaviour
 
             if (other.CompareTag("HP") & playerHealth.CurrentHealth < playerHealth.MaxHealth)
             {
+                audioSource.PlayOneShot(hpItemSound);
                 playerHealth.CurrentHealth++;
                 playerHealth.UpdateHealthBar();
                 Destroy(other.gameObject);
@@ -82,6 +88,7 @@ public class PlayerController : MonoBehaviour
 
             if (other.CompareTag("TeleportItem") & itemTracker.CurrentTeleports < itemTracker.MaxTeleports)
             {
+                audioSource.PlayOneShot(tpItemSound);
                 itemTracker.CurrentTeleports++;
                 itemTracker.UpdateTeleportCount();
                 Destroy(other.gameObject);
@@ -89,6 +96,7 @@ public class PlayerController : MonoBehaviour
 
             if (other.CompareTag("EnemyPart"))
             {
+                audioSource.PlayOneShot(roboPartSound);
                 itemTracker.PartAmount++;
                 itemTracker.UpdatePartCount();
                 Destroy(other.gameObject);
