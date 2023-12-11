@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerHealth : MonoBehaviour
 {
+    public EnemySpawner enemySpawnerScript;
+
     private PlayerController playerController;
 
-    public GameObject gameOver;
-    private GameOverScript gameOverScript;
+    private int gameOverScreen = 2;
 
     public List<SpriteRenderer> playerSprites;
 
@@ -26,8 +28,6 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-
-        gameOverScript = gameOver.GetComponent<GameOverScript>();
 
         playerController = gameObject.GetComponent<PlayerController>();
 
@@ -47,7 +47,9 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            gameOverScript.GameOver();
+            PlayerPrefs.SetInt("finalWaveCount", enemySpawnerScript.WaveCount);
+            SceneManager.LoadScene(gameOverScreen);
+
         }
     }
 

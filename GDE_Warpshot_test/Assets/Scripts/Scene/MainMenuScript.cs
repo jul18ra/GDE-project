@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
-    private int mainMenu = 0;
     private int levelScene = 1;
-    private int gameOver = 2;
     public GameObject controlInfoPanel;
-    
+
+    private void Start()
+    {
+        PlayerPrefs.SetInt("finalWaveCount", 0);
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene(levelScene);
