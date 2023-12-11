@@ -16842,6 +16842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveEndedMusic: {fileID: 8300000, guid: ae5a6349617197f4096115c39a73e711, type: 3}
   waveOngoingMusic: {fileID: 8300000, guid: 38df891df640dac4d8f2994632e0b0e9, type: 3}
+  warningSound: {fileID: 8300000, guid: 3a761bec250008a449c9e6ac3fb39a27, type: 3}
   spawners:
   - {fileID: 1299196774}
   - {fileID: 374692489}
@@ -17328,7 +17329,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10.002441, y: 10}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

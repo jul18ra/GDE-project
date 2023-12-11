@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 
 public class EnemySpawner : MonoBehaviour
@@ -10,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     private AudioSource mainCamAudio;
     public AudioClip waveEndedMusic;
     public AudioClip waveOngoingMusic;
+    public AudioClip warningSound;
 
     private bool musicPlaying = false;
 
@@ -96,6 +98,16 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    private IEnumerator PlayWarningSound()
+    {
+        mainCamAudio.clip = null;
+        mainCamAudio.PlayOneShot(warningSound, 2);
+        yield return new WaitForSeconds(warningSound.length);
+        mainCamAudio.clip = waveOngoingMusic;
+        mainCamAudio.Play();
+
+    }
+
     void ListEnemies()
     {
         Enemy enemy1 = new(enemy1Prefab, enemy1cost);
@@ -127,8 +139,7 @@ public class EnemySpawner : MonoBehaviour
     public void StartWave()
     {
         musicPlaying = false;
-        mainCamAudio.clip = waveOngoingMusic;
-        mainCamAudio.Play();
+        StartCoroutine("PlayWarningSound");
         waveCount++;
         Debug.Log($"Wave {waveCount} has begun");
         GenerateEnemiesToSpawn();
