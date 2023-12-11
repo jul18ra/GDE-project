@@ -225,6 +225,7 @@ public class ShopScript : MonoBehaviour
 
             shopItems[itemIndex].UpgradeStats();
             UpdateCost();
+            itemScript.UpdatePartCount();
         }
 
     }

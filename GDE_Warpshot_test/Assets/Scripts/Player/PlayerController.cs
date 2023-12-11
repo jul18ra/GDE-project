@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
             if (other.CompareTag("EnemyPart"))
             {
                 itemTracker.PartAmount++;
+                itemTracker.UpdatePartCount();
                 Destroy(other.gameObject);
             }
         }

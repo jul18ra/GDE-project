@@ -42,6 +42,8 @@ public class ItemTracker : MonoBehaviour
         tpTileEmpty.rectTransform.sizeDelta = new Vector2(maxSize, tileSize);
         tpTileFull.rectTransform.sizeDelta = new Vector2(maxSize, tileSize);
 
+        UpdatePartCount();
+
     }
 
     public void UpdateTeleportCount()
@@ -50,11 +52,15 @@ public class ItemTracker : MonoBehaviour
         tpTileFull.rectTransform.sizeDelta = new Vector2(currentSize, tileSize);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdatePartCount()
     {
         partText.SetText($"{partAmount}");
 
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (currentTeleports <= 0)
         {
             canTeleport = false;
