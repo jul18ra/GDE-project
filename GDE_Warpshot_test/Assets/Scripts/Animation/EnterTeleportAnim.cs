@@ -25,6 +25,8 @@ public class EnterTeleportAnim : StateMachineBehaviour
         playerController = player.GetComponent<PlayerController>();
 
         playerController.Teleport();
+        Physics.IgnoreLayerCollision(6, 8, true);
+
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

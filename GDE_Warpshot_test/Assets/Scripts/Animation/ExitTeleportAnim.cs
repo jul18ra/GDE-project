@@ -12,6 +12,8 @@ public class ExitTeleportAnim : StateMachineBehaviour
     {
         animator.SetBool("isTeleporting", false);
         animator.SetBool("reachedDestination", false);
+        Physics.IgnoreLayerCollision(6, 8, false);
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
