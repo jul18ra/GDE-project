@@ -1,11 +1,4 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using UnityEditor.Profiling;
 using UnityEngine;
-using UnityEngine.XR;
-using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class PlayerController : MonoBehaviour
 {
