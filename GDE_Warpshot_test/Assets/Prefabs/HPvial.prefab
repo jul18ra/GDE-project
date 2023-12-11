@@ -66,6 +66,7 @@ GameObject:
   - component: {fileID: 8654199563195420595}
   - component: {fileID: 1947937629909613701}
   - component: {fileID: 2047749814392971954}
+  - component: {fileID: 975356067530700905}
   m_Layer: 0
   m_Name: HPvial
   m_TagString: HP
@@ -212,3 +213,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &975356067530700905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7661349096007173250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6382d6c978336664d9040219e0242817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
