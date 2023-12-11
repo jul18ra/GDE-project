@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901a8c7e0e179614ab45d0627795cf59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teleportEnterSound: {fileID: 8300000, guid: a3fa4a41a3e00bc428ed4c7ec993d05e, type: 3}
 --- !u!1102 &-5638521298723841455
 AnimatorState:
   serializedVersion: 6
@@ -52,6 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95bb71c9ef1d9ec4daf7926544c91cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teleportExitSound: {fileID: 8300000, guid: 14e5de7deb8e519439ff6e776fcf9b79, type: 3}
 --- !u!1107 &-992077573670736147
 AnimatorStateMachine:
   serializedVersion: 6

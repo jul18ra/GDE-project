@@ -6,11 +6,18 @@ public class EnterTeleportAnim : StateMachineBehaviour
 {
     private GameObject player;
     private PlayerController playerController;
+    private AudioSource audioSource;
+    public AudioClip teleportEnterSound;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        player = GameObject.Find("Player");
+        playerController = player.GetComponent<PlayerController>();
+        audioSource = player.GetComponent<AudioSource>();
+        audioSource.PlayOneShot(teleportEnterSound);
+        Physics.IgnoreLayerCollision(6, 8, true);
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -21,12 +28,7 @@ public class EnterTeleportAnim : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = GameObject.Find("Player");
-        playerController = player.GetComponent<PlayerController>();
-
         playerController.Teleport();
-        Physics.IgnoreLayerCollision(6, 8, true);
-
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -6,6 +6,8 @@ public class ExitTeleportAnim : StateMachineBehaviour
 {
     private GameObject player;
     private PlayerController playerController;
+    private AudioSource audioSource;
+    public AudioClip teleportExitSound;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -27,8 +29,10 @@ public class ExitTeleportAnim : StateMachineBehaviour
     {
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
+        audioSource = player.GetComponent<AudioSource>();
 
-        playerController.Teleporting = false;   
+        playerController.Teleporting = false;
+        audioSource.PlayOneShot(teleportExitSound);
     }
 
 
