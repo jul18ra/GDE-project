@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -20,24 +21,23 @@ public class LootDropScript : MonoBehaviour
     {
         if (gameObject.name == "RobotSpider(Clone)")
         {
-            Instantiate(robotPart, transform.position, transform.rotation);
+            Instantiate(robotPart, RandomDropLocation(), transform.rotation);
         }
 
         if (gameObject.name == "RobotGiant(Clone)")
         {
             for (int i = 0; i < 2; i++)
             {
-                Instantiate(robotPart, transform.position, transform.rotation);
+                Instantiate(robotPart, RandomDropLocation(), transform.rotation);
             }
         }
-
     }
 
     private void DropItem(GameObject item, float dropRate)
     {
         if (Random.Range(0f, 1f) <= dropRate)
         {
-            Instantiate(item, transform.position, transform.rotation);
+            Instantiate(item, RandomDropLocation(), transform.rotation);
         }
     }
     public void DropLoot()
@@ -45,6 +45,14 @@ public class LootDropScript : MonoBehaviour
         DropRobotPart();
         DropItem(tpItem, tpDropRate);
         DropItem(hpItem, hpDropRate);
+    }
+
+    private Vector3 RandomDropLocation()
+    {
+        Vector3 randomCoords = new(Random.Range(-1, 1), Random.Range(-1, 1), 0);
+        Vector3 dropLocation = transform.position + randomCoords;
+        return dropLocation;
+
     }
 
 }

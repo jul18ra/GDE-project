@@ -39,18 +39,18 @@ public class DealDamage : MonoBehaviour
             if (gameObject.name == "RobotSpider(Clone)")
             {
                 playerHealth.TakeDamage(1);
-                StartCoroutine("damageTimer");
+                StartCoroutine("DamageTimer");
             }
 
             if (gameObject.name == "RobotGiant(Clone)")
             {
                 playerHealth.TakeDamage(1);
-                StartCoroutine("damageTimer");
+                StartCoroutine("DamageTimer");
             }
         }
     }
 
-    private IEnumerator damageTimer()
+    private IEnumerator DamageTimer()
     {
         damageTimerRunning = true;  
         canTakeDamage = false;

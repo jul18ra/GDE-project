@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         // Teleports player when right click 
         if (Input.GetMouseButtonDown(1) & itemTracker.CanTeleport)
         {
+            previousPos = transform.position;
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             itemTracker.CurrentTeleports--;
             itemTracker.UpdateTeleportCount();
@@ -58,7 +59,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             playerAnim.SetBool("reachedDestination", true);
-            previousPos = transform.position;
         }
 
     }

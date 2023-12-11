@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -54,11 +55,12 @@ public class EnemyController : MonoBehaviour
             // Enemies move where the player last was
             enemyRb.MovePosition((Vector2)transform.position + (speed * Time.deltaTime * currentDirection.normalized));
         }
+
         else
         {
             // Enemies move towards player
             enemyRb.MovePosition((Vector2)transform.position + (speed * Time.deltaTime * playerDirection.normalized));
-
         }
+
     }
 }

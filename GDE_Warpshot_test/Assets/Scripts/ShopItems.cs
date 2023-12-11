@@ -141,7 +141,6 @@ public class HealthUpItem : Item
         playerHealthScript.MaxHealth = upgrade;
         playerHealthScript.CurrentHealth = upgrade;
         Vector3 newScale = new Vector3((startScaleX += startScaleX * multiplier * 0.1f), 1, 1);
-        Debug.Log(newScale.x);
         healthBar.transform.localScale = newScale;
         startScaleX = newScale.x;
     }
