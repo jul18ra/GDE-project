@@ -8,6 +8,7 @@ public class MainMenuScript : MonoBehaviour
     private int mainMenu = 0;
     private int levelScene = 1;
     private int gameOver = 2;
+    public GameObject controlInfoPanel;
     
     public void PlayGame()
     {
@@ -21,6 +22,11 @@ public class MainMenuScript : MonoBehaviour
 
     public void OpenControls()
     {
+        controlInfoPanel.SetActive(true);
+    }
 
+    public void CloseControls()
+    {
+        controlInfoPanel.SetActive(false);
     }
 }
