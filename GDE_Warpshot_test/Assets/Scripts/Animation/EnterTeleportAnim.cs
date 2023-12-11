@@ -16,7 +16,6 @@ public class EnterTeleportAnim : StateMachineBehaviour
         playerController = player.GetComponent<PlayerController>();
         audioSource = player.GetComponent<AudioSource>();
         audioSource.PlayOneShot(teleportEnterSound);
-        Physics.IgnoreLayerCollision(6, 8, true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

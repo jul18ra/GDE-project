@@ -48,7 +48,9 @@ public class ItemTracker : MonoBehaviour
 
     public void UpdateTeleportCount()
     {
+        maxSize = maxTeleports * tileSize;
         currentSize = currentTeleports * tileSize;
+        tpTileEmpty.rectTransform.sizeDelta = new Vector2(maxSize, tileSize);
         tpTileFull.rectTransform.sizeDelta = new Vector2(currentSize, tileSize);
     }
 

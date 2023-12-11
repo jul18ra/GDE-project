@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExitTeleportAnim : StateMachineBehaviour
 {
     private GameObject player;
+    private Rigidbody2D playerRb;
     private PlayerController playerController;
     private AudioSource audioSource;
     public AudioClip teleportExitSound;
@@ -14,15 +15,16 @@ public class ExitTeleportAnim : StateMachineBehaviour
     {
         animator.SetBool("isTeleporting", false);
         animator.SetBool("reachedDestination", false);
-        Physics.IgnoreLayerCollision(6, 8, false);
+        player = GameObject.Find("Player");
+        playerRb = player.GetComponent<Rigidbody2D>();
+        playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    // override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {
+    // }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -33,6 +35,7 @@ public class ExitTeleportAnim : StateMachineBehaviour
 
         playerController.Teleporting = false;
         audioSource.PlayOneShot(teleportExitSound);
+
     }
 
 

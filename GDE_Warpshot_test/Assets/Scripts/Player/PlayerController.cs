@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         // Teleports player when right click 
         if (Input.GetMouseButtonDown(1) & itemTracker.CanTeleport)
         {
+            playerRb.constraints = RigidbodyConstraints2D.FreezePosition;
             previousPos = transform.position;
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             itemTracker.CurrentTeleports--;

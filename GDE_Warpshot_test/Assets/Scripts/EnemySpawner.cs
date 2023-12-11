@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
 
     private int waveValue;
     private int waveCount = 0;
-    private int waveDuration = 15; //45
+    private int waveDuration = 30;
     private float waveTimer;
     private bool waveEnded;
     public bool WaveEnded { get { return waveEnded; } set { waveEnded = value; } }
@@ -50,8 +50,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        // Debug.Log(spawnedEnemies);
-
         if (spawnTimer <= 0)
         {
             if (enemiesToSpawn.Count > 0)
@@ -122,7 +120,7 @@ public class EnemySpawner : MonoBehaviour
 
     void GenerateEnemiesToSpawn()
     {
-        waveValue = waveCount * 10;
+        waveValue = waveCount * 5;
 
         while (waveValue > 0)
         {
@@ -142,7 +140,6 @@ public class EnemySpawner : MonoBehaviour
         musicPlaying = false;
         StartCoroutine("DisplayWave");
         StartCoroutine("PlayWarningSound");
-        Debug.Log($"Wave {waveCount} has begun");
         GenerateEnemiesToSpawn();
         spawnRepeatRate = waveDuration / enemiesToSpawn.Count;
         waveTimer = waveDuration;
