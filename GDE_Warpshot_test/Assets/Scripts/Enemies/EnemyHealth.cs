@@ -13,6 +13,10 @@ public class EnemyHealth : MonoBehaviour
     private EnemySpawner enemySpawnerScript;
     private LootDropScript lootDropScript;
 
+    private AudioSource audioSource;
+
+    public AudioClip enemyHit;
+
     private SpriteRenderer enemySprite;
 
     public Image healthBar; 
@@ -24,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         enemySpawners = GameObject.Find("EnemySpawners");
         enemySpawnerScript = enemySpawners.GetComponent<EnemySpawner>();
         lootDropScript = gameObject.GetComponent<LootDropScript>();
@@ -47,6 +52,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        audioSource.PlayOneShot(enemyHit);
+
         currentHealth -= damage;
         healthBar.fillAmount = currentHealth / maxHealth;
         StartCoroutine(FlashRed());
