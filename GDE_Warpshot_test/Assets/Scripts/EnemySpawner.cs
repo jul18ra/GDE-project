@@ -26,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
     private int enemy1cost = 1;
     private int enemy2cost = 3;
 
-    private int waveValue;
+    private int waveValue = 10;
     private int waveCount = 0;
     private int waveDuration = 30;
     private float waveTimer;
@@ -79,7 +79,7 @@ public class EnemySpawner : MonoBehaviour
             waveTimer -= Time.deltaTime;
         }
 
-        if (waveTimer <= 0 & spawnedEnemies == 0) 
+        if (waveTimer <= 0 & spawnedEnemies == 0 & enemiesToSpawn.Count == 0) 
         {
             waveEnded = true;
             PlayWaveEndedMusic();
@@ -120,7 +120,7 @@ public class EnemySpawner : MonoBehaviour
 
     void GenerateEnemiesToSpawn()
     {
-        waveValue = waveCount * 7;
+        waveValue += waveCount * 4;
 
         while (waveValue > 0)
         {
