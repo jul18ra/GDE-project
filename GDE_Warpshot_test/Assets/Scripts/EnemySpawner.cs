@@ -7,6 +7,12 @@ using UnityEngine.XR;
 
 public class EnemySpawner : MonoBehaviour
 {
+    private AudioSource mainCamAudio;
+    public AudioClip waveEndedMusic;
+    public AudioClip waveOngoingMusic;
+
+    private bool musicPlaying = false;
+
     private List<Enemy> enemies;
     private List<GameObject> enemiesToSpawn = new();
     public List<Transform> spawners;
@@ -28,8 +34,6 @@ public class EnemySpawner : MonoBehaviour
     public bool WaveEnded { get { return waveEnded; } set { waveEnded = value; } }
     public int WaveCount { get { return waveCount; } }
 
-
-
     private float spawnTimer;
     private float spawnRepeatRate;
     private int spawnedEnemies;
@@ -37,6 +41,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
+        mainCamAudio = Camera.main.GetComponent<AudioSource>();
         ListEnemies();
         StartWave();
     }
@@ -77,6 +82,17 @@ public class EnemySpawner : MonoBehaviour
         if (waveTimer <= 0 & spawnedEnemies == 0) 
         {
             waveEnded = true;
+            PlayWaveEndedMusic();
+        }
+    }
+
+    void PlayWaveEndedMusic()
+    {
+        if (waveEnded & !musicPlaying)
+        {
+            mainCamAudio.clip = waveEndedMusic;
+            mainCamAudio.Play();
+            musicPlaying = true;
         }
     }
 
@@ -110,6 +126,9 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartWave()
     {
+        musicPlaying = false;
+        mainCamAudio.clip = waveOngoingMusic;
+        mainCamAudio.Play();
         waveCount++;
         Debug.Log($"Wave {waveCount} has begun");
         GenerateEnemiesToSpawn();
