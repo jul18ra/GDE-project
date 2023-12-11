@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.constraints = RigidbodyConstraints2D.FreezePosition;
             playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            playerRb.isKinematic = true;
+
             previousPos = transform.position;
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             itemTracker.CurrentTeleports--;

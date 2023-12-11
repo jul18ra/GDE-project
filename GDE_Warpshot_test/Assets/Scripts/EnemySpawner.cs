@@ -120,7 +120,7 @@ public class EnemySpawner : MonoBehaviour
 
     void GenerateEnemiesToSpawn()
     {
-        waveValue += waveCount * 4;
+        waveValue += waveCount * 3;
 
         while (waveValue > 0)
         {

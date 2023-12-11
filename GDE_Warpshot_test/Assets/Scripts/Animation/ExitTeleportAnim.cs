@@ -34,6 +34,7 @@ public class ExitTeleportAnim : StateMachineBehaviour
         playerRb = player.GetComponent<Rigidbody2D>();
         audioSource = player.GetComponent<AudioSource>();
 
+        playerRb.isKinematic = false;
         playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
         playerController.Teleporting = false;
         audioSource.PlayOneShot(teleportExitSound);
