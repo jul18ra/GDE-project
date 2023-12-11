@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680f697bb0ab67541bf0d5ad3980a1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHit: {fileID: 8300000, guid: b98c3276bf4e43d45becb2c34cb5f23c, type: 3}
+  enemyHit: {fileID: 8300000, guid: 76ca5e289b54ff849857cec66b37ceb7, type: 3}
   healthBar: {fileID: 2492639537497154150}
 --- !u!60 &5166495158273412153
 PolygonCollider2D:
