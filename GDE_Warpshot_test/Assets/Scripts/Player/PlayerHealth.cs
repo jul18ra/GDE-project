@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
     public GameObject gameOver;
     private GameOverScript gameOverScript;
 
-    //private SpriteRenderer playerSprite;
+    public List<SpriteRenderer> playerSprites;
 
     public Image healthBar;
 
@@ -22,8 +22,6 @@ public class PlayerHealth : MonoBehaviour
     private float currentHealth;
     public float CurrentHealth { get { return currentHealth; } set { currentHealth = value; } }
 
-    //private bool flashing;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +29,6 @@ public class PlayerHealth : MonoBehaviour
 
         gameOverScript = gameOver.GetComponent<GameOverScript>();
 
-        //playerSprite = gameObject.GetComponent<SpriteRenderer>();
         playerController = gameObject.GetComponent<PlayerController>();
 
         UpdateHealthBar();
@@ -45,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         UpdateHealthBar();
-        //StartCoroutine(FlashRed());
+        StartCoroutine(FlashRed());
 
         if (currentHealth <= 0)
         {
@@ -59,17 +56,19 @@ public class PlayerHealth : MonoBehaviour
         healthBar.fillAmount = currentHealth / maxHealth;
     }
 
-    /* IEnumerator FlashRed()
+
+    private void ChangeColor(Color color)
     {
-        flashing = true;
-        playerSprite.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        playerSprite.color = Color.white;
-        flashing = false;
+        foreach (SpriteRenderer sprite in playerSprites)
+        {
+            sprite.color = color;
+        }
     }
 
-    public bool getIsFlashing()
+    IEnumerator FlashRed()
     {
-        return flashing;
-    }*/
+        ChangeColor(Color.red);
+        yield return new WaitForSeconds(0.1f);
+        ChangeColor(Color.white);
+    }
 }

@@ -14289,6 +14289,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOver: {fileID: 945558743}
+  playerSprites:
+  - {fileID: 80691434}
+  - {fileID: 1787240550}
+  - {fileID: 182828098}
+  - {fileID: 1929607192}
   healthBar: {fileID: 354487495}
 --- !u!114 &827524606
 MonoBehaviour:
