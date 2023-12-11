@@ -12,9 +12,9 @@ using static Item;
 public class ShopScript : MonoBehaviour
 {
     private AudioSource audioSource;
-    private AudioSource mainCamAudio;
     public AudioClip purchaseSound;
     public AudioClip noMoneySound;
+    public AudioClip buttonSound;
 
     private GameObject enemySpawners;
     private EnemySpawner enemySpawnerScript;
@@ -88,7 +88,6 @@ public class ShopScript : MonoBehaviour
         lootDropScript = enemy.GetComponent<LootDropScript>();
 
         audioSource = GetComponent<AudioSource>();
-        mainCamAudio = Camera.main.GetComponent<AudioSource>(); 
     }
 
     void GetShopUIReferences()
@@ -196,6 +195,7 @@ public class ShopScript : MonoBehaviour
 
     public void OpenShop()
     {
+        audioSource.PlayOneShot(buttonSound);
         shopUI.SetActive(true);
         DisplayItems();
         shopIsOpen = true;
@@ -203,6 +203,7 @@ public class ShopScript : MonoBehaviour
 
     public void CloseShop()
     {
+        audioSource.PlayOneShot(buttonSound);
         shopUI.SetActive(false);
         shopIsOpen = false;
         openShopPrompt.SetActive(true);

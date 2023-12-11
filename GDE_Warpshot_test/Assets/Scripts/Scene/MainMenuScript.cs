@@ -9,6 +9,7 @@ public class MainMenuScript : MonoBehaviour
     public GameObject controlInfoPanel;
     private AudioSource audioSource;
     public AudioClip startGameSound;
+    public AudioClip buttonSound;
 
     private void Start()
     {
@@ -18,21 +19,25 @@ public class MainMenuScript : MonoBehaviour
 
     public void PlayGame()
     {
+        audioSource.PlayOneShot(buttonSound);
         StartCoroutine("StartGame");
     }
 
     public void QuitGame()
     {
+        audioSource.PlayOneShot(buttonSound);
         Application.Quit();
     }
 
     public void OpenControls()
     {
+        audioSource.PlayOneShot(buttonSound);
         controlInfoPanel.SetActive(true);
     }
 
     public void CloseControls()
     {
+        audioSource.PlayOneShot(buttonSound);
         controlInfoPanel.SetActive(false);
     }
 

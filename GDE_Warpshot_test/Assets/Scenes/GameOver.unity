@@ -926,6 +926,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveText: {fileID: 508725246}
+  startGameSound: {fileID: 8300000, guid: 14aae3e3e40f30d4695b773817e77f4f, type: 3}
+  buttonSound: {fileID: 8300000, guid: 04e14bb8a848ed74c93e4cd87f237d96, type: 3}
 --- !u!1 &1787736399
 GameObject:
   m_ObjectHideFlags: 0

@@ -9276,6 +9276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   purchaseSound: {fileID: 8300000, guid: 7755fbb67424d194c95e646cc2991bcc, type: 3}
   noMoneySound: {fileID: 8300000, guid: c24fd98bfb027ae458aa1acfa666a0ec, type: 3}
+  buttonSound: {fileID: 8300000, guid: 04e14bb8a848ed74c93e4cd87f237d96, type: 3}
   enemy: {fileID: 6397064153773469443, guid: 6de8c393350754d4f9430665f94aa58d, type: 3}
   bullet: {fileID: 7328392015338922199, guid: a21d353595df2e54683dc705b45e7eb2, type: 3}
   openShopPrompt: {fileID: 1974455432}
