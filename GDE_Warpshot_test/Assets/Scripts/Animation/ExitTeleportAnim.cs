@@ -16,8 +16,8 @@ public class ExitTeleportAnim : StateMachineBehaviour
         animator.SetBool("isTeleporting", false);
         animator.SetBool("reachedDestination", false);
         player = GameObject.Find("Player");
-        playerRb = player.GetComponent<Rigidbody2D>();
-        playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        // playerRb = player.GetComponent<Rigidbody2D>();
+        // playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
     }
 
@@ -31,8 +31,10 @@ public class ExitTeleportAnim : StateMachineBehaviour
     {
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
+        playerRb = player.GetComponent<Rigidbody2D>();
         audioSource = player.GetComponent<AudioSource>();
 
+        playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
         playerController.Teleporting = false;
         audioSource.PlayOneShot(teleportExitSound);
 

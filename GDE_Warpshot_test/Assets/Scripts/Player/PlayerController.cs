@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(1) & itemTracker.CanTeleport)
         {
             playerRb.constraints = RigidbodyConstraints2D.FreezePosition;
+            playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
             previousPos = transform.position;
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             itemTracker.CurrentTeleports--;

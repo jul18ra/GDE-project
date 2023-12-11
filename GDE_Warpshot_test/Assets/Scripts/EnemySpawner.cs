@@ -120,7 +120,7 @@ public class EnemySpawner : MonoBehaviour
 
     void GenerateEnemiesToSpawn()
     {
-        waveValue = waveCount * 5;
+        waveValue = waveCount * 7;
 
         while (waveValue > 0)
         {
@@ -143,7 +143,7 @@ public class EnemySpawner : MonoBehaviour
         GenerateEnemiesToSpawn();
         spawnRepeatRate = waveDuration / enemiesToSpawn.Count;
         waveTimer = waveDuration;
-        spawnTimer = 2;
+        spawnTimer = spawnRepeatRate;
     }
 
     private IEnumerator DisplayWave()
