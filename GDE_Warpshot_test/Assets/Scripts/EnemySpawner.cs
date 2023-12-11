@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.XR;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -23,10 +20,11 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemy1Prefab;
     public GameObject enemy2Prefab;
 
+    private GameObject waveSplashScreen;
+    private TMP_Text waveText;
+
     private int enemy1cost = 1;
     private int enemy2cost = 3;
-
-    private bool displayWaveEnded;
 
     private int waveValue;
     private int waveCount = 0;
@@ -44,6 +42,8 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         mainCamAudio = Camera.main.GetComponent<AudioSource>();
+        waveSplashScreen = GameObject.Find("WaveSplashScreen");
+
         ListEnemies();
         StartWave();
     }
@@ -138,9 +138,10 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartWave()
     {
-        musicPlaying = false;
-        StartCoroutine("PlayWarningSound");
         waveCount++;
+        musicPlaying = false;
+        StartCoroutine("DisplayWave");
+        StartCoroutine("PlayWarningSound");
         Debug.Log($"Wave {waveCount} has begun");
         GenerateEnemiesToSpawn();
         spawnRepeatRate = waveDuration / enemiesToSpawn.Count;
@@ -148,6 +149,13 @@ public class EnemySpawner : MonoBehaviour
         spawnTimer = 2;
     }
 
+    private IEnumerator DisplayWave()
+    {
+        waveText = waveSplashScreen.GetComponentInChildren<TMP_Text>();
+        waveText.SetText($"WAVE {waveCount}");
+        yield return new WaitForSeconds(warningSound.length);
+        waveText.SetText("");
+    }
 }
 
 public class Enemy
