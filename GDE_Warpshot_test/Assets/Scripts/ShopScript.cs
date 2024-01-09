@@ -103,6 +103,7 @@ public class ShopScript : MonoBehaviour
         ListText();
     }
 
+    // Lists all available items
     void ListItems()
     {
         DamageUpItem damageUp = new(bulletScript.BulletDamage, 5);
@@ -131,6 +132,7 @@ public class ShopScript : MonoBehaviour
         }
     }
 
+    // Lists all shop UI item costs and descriptions
     void ListText()
     {
         itemTextList = new List<TMP_Text>
@@ -152,6 +154,7 @@ public class ShopScript : MonoBehaviour
     {
         CloneItemList();
 
+        // Adds 3 random items from all available items to the shop
         while (shopItems.Count <= 3)
         {
             int itemIndex = UnityEngine.Random.Range(0, itemsCopy.Count);
@@ -170,6 +173,7 @@ public class ShopScript : MonoBehaviour
         int n = 0;
         foreach (var itemText in itemTextList)
         {
+            // Randomises upgrade multipliers for each shop item (Teleport items don't have a random multiplier)
             if (shopItems[n].GetType() != typeof(TeleportUpItem))
             {
                 shopItems[n].RandomiseMultiplier();
@@ -183,6 +187,7 @@ public class ShopScript : MonoBehaviour
 
     }
 
+    // Updates cost on shop UI
     private void UpdateCost()
     {
         int n = 0;
@@ -213,7 +218,10 @@ public class ShopScript : MonoBehaviour
     private void NewWave()
     {
         enemySpawnerScript.WaveEnded = false;
+
+        // Clear shop items so there can be new shop items for next wave
         shopItems.Clear();
+
         enemySpawnerScript.StartWave();
     }
 
@@ -224,9 +232,10 @@ public class ShopScript : MonoBehaviour
             // Deduct cost from total part amount
             itemScript.PartAmount -= shopItems[itemIndex].Cost;
 
+            // Raise cost for bought item
             foreach (Item item in items) 
             { 
-                if (shopItems[itemIndex].Indentifier == item.Indentifier)
+                if (shopItems[itemIndex].ItemID == item.ItemID)
                 {
                     item.RaiseCost();
                 }

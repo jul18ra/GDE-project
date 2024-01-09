@@ -16,9 +16,6 @@ public class ExitTeleportAnim : StateMachineBehaviour
         animator.SetBool("isTeleporting", false);
         animator.SetBool("reachedDestination", false);
         player = GameObject.Find("Player");
-        // playerRb = player.GetComponent<Rigidbody2D>();
-        // playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -34,8 +31,10 @@ public class ExitTeleportAnim : StateMachineBehaviour
         playerRb = player.GetComponent<Rigidbody2D>();
         audioSource = player.GetComponent<AudioSource>();
 
+        // Removes player constraints
         playerRb.isKinematic = false;
         playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
         playerController.Teleporting = false;
         audioSource.PlayOneShot(teleportExitSound);
 

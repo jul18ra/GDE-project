@@ -29,6 +29,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        // Flips enemy to face player
         if (player.transform.position.x > gameObject.transform.position.x)
         {
             enemySr.flipX = true;

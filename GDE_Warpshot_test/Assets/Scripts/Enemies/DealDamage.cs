@@ -10,10 +10,6 @@ public class DealDamage : MonoBehaviour
     private bool canTakeDamage = true;
     private bool damageTimerRunning;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
     private void Update()
     {
         player = GameObject.Find("Player");
@@ -24,16 +20,17 @@ public class DealDamage : MonoBehaviour
         {
             canTakeDamage = false;
         }
+
         else if(!damageTimerRunning)
         {
             canTakeDamage = true;
-
         }
 
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        // Player takes damage from enemies
         if (other.CompareTag("Player") & canTakeDamage)
         {
             if (gameObject.name == "RobotSpider(Clone)")
@@ -50,6 +47,7 @@ public class DealDamage : MonoBehaviour
         }
     }
 
+    // Prevents player from taking damage if they've been damaged recently
     private IEnumerator DamageTimer()
     {
         damageTimerRunning = true;  

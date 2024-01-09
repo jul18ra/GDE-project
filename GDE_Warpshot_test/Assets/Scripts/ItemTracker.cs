@@ -36,9 +36,13 @@ public class ItemTracker : MonoBehaviour
         tpTileEmpty = GameObject.Find("Empty").GetComponent<Image>();
         tpTileFull = GameObject.Find("Full").GetComponent<Image>();
 
+        // Maximum size for teleport item UI
         maxSize = maxTeleports * tileSize;
+
+        // Current size of teleport item UI
         currentSize = currentTeleports * tileSize;
 
+        // Displays teleport item UI
         tpTileEmpty.rectTransform.sizeDelta = new Vector2(maxSize, tileSize);
         tpTileFull.rectTransform.sizeDelta = new Vector2(maxSize, tileSize);
 
@@ -46,6 +50,7 @@ public class ItemTracker : MonoBehaviour
 
     }
 
+    // Updates amount of teleport items to UI
     public void UpdateTeleportCount()
     {
         maxSize = maxTeleports * tileSize;

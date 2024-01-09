@@ -28,14 +28,8 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-
         playerController = gameObject.GetComponent<PlayerController>();
-
         UpdateHealthBar();
-    }
-
-    private void Update()
-    {
     }
 
     public void TakeDamage(float damage)
@@ -58,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
         healthBar.fillAmount = currentHealth / maxHealth;
     }
 
-
+    // Makes each player part change color
     private void ChangeColor(Color color)
     {
         foreach (SpriteRenderer sprite in playerSprites)

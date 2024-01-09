@@ -21,7 +21,16 @@ public class GameOverScript : MonoBehaviour
     {
         audioSource = Camera.main.GetComponent<AudioSource>();
         finalWaveCount = PlayerPrefs.GetInt("finalWaveCount");
-        waveText.SetText($"You survived {finalWaveCount} waves");
+        if (finalWaveCount == 1)
+        {
+            waveText.SetText($"You survived {finalWaveCount} wave");
+
+        }
+        else
+        {
+            waveText.SetText($"You survived {finalWaveCount} waves");
+
+        }
 
     }
 

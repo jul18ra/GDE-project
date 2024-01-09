@@ -18,8 +18,6 @@ public class LookAtMouse : MonoBehaviour
     private Vector2 lookDir;
     private Vector3 mousePos;
 
-    private Quaternion gunRotation;
-
     private void Start()
     {
         defScale = player.transform.localScale;
@@ -36,11 +34,6 @@ public class LookAtMouse : MonoBehaviour
         headRotation = CalculateRotation(head, headMinAngle, headMaxAngle);
         head.transform.rotation = Quaternion.Euler(0, 0, headRotation);
 
-        //Debug.Log(headRotation);
-
-
-        gunRotation = transform.rotation;
-
         // Makes the player face left if the cursor is on the left side of the player
         if (armsRotation < -90 | armsRotation > 90)
         {
@@ -50,9 +43,8 @@ public class LookAtMouse : MonoBehaviour
             // Flips the gun
             transform.localRotation = Quaternion.Euler(180, 180, -armsRotation);
 
-            // Ahh going insane (supposed to flip head)
+            // Flips player head
             head.transform.rotation = Quaternion.Euler(180, 180, headRotation);
-            //Debug.Log(headRotation);
 
         }
         else
@@ -62,6 +54,7 @@ public class LookAtMouse : MonoBehaviour
 
     }
 
+    // Calculates rotation for a part so that the part faces the mouse
     private float CalculateRotation(GameObject part, float minAngle, float maxAngle)
     {
         float rotation;
@@ -71,8 +64,4 @@ public class LookAtMouse : MonoBehaviour
         return rotation;
     }
 
-    public Quaternion GunRotation
-    {
-        get { return gunRotation; }
-    }
 }

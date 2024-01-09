@@ -18,11 +18,14 @@ public class CullItems : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
+
+        // If an item has been alive for over 10 seconds, start blinking
         if (timer > 10 & !blinking)
         {
             StartCoroutine(Blink());
         }
 
+        // Destroy item when it is blinking very fast
         if (blinkInterval <= 0)
         {
             Destroy(gameObject);

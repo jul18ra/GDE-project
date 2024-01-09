@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Checks if the mouse is on a floor tile
 public class TilemapTeleportCheck : MonoBehaviour
 {
     private ItemTracker itemTracker;

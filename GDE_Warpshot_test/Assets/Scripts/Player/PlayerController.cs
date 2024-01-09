@@ -45,9 +45,10 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        // Teleports player when right click 
+        // Teleports player on right click 
         if (Input.GetMouseButtonDown(1) & itemTracker.CanTeleport)
         {
+            // Freezes player
             playerRb.constraints = RigidbodyConstraints2D.FreezePosition;
             playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
             playerRb.isKinematic = true;
@@ -81,7 +82,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!teleporting)
         {
-
+            // Collision with HP item
             if (other.CompareTag("HP") & playerHealth.CurrentHealth < playerHealth.MaxHealth)
             {
                 audioSource.PlayOneShot(hpItemSound);
@@ -89,7 +90,8 @@ public class PlayerController : MonoBehaviour
                 playerHealth.UpdateHealthBar();
                 Destroy(other.gameObject);
             }
-
+            
+            // Collision with teleport item
             if (other.CompareTag("TeleportItem") & itemTracker.CurrentTeleports < itemTracker.MaxTeleports)
             {
                 audioSource.PlayOneShot(tpItemSound);
@@ -98,6 +100,7 @@ public class PlayerController : MonoBehaviour
                 Destroy(other.gameObject);
             }
 
+            // Collision with robot parts
             if (other.CompareTag("EnemyPart"))
             {
                 audioSource.PlayOneShot(roboPartSound);

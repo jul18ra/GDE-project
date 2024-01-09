@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// Checks if mouse is hovering over shop screen
 public class ShopMouseCheck : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private PlayerController playerController;

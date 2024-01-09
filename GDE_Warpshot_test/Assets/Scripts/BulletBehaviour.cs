@@ -23,6 +23,7 @@ public class BulletBehaviour : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         aimDir = mousePos - transform.position;
 
+        // Bullet angle and rotation when fired from gun
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 

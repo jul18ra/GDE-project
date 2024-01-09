@@ -26,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
     private int enemy1cost = 1;
     private int enemy2cost = 3;
 
-    private int waveValue = 10;
+    private int waveMoney = 10;
     private int waveCount = 0;
     private int waveDuration = 30;
     private float waveTimer;
@@ -50,23 +50,31 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
+        // Spawns enemies
         if (spawnTimer <= 0)
         {
             if (enemiesToSpawn.Count > 0)
             {
                 Instantiate(enemiesToSpawn[0], spawners[spawnerIndex].position, transform.rotation);
 
+                // Alternates between spawn points
                 spawnerIndex++;
                 if (spawnerIndex > spawners.Count - 1)
                 {
                     spawnerIndex = 0;
                 }
 
+                // Increments amount of currently spawned enemies
                 spawnedEnemies++;
+                
+                // Removes spawned enemy from spawn list
                 enemiesToSpawn.RemoveAt(0);
+
+                // Resets spawn timer
                 spawnTimer = spawnRepeatRate;
             }
 
+            // If there is no enemies to spawn, set wave timer to 0
             else
             {
                 waveTimer = 0;
@@ -79,6 +87,7 @@ public class EnemySpawner : MonoBehaviour
             waveTimer -= Time.deltaTime;
         }
 
+        // If there is no enemies to spawn, end wave
         if (waveTimer <= 0 & spawnedEnemies == 0 & enemiesToSpawn.Count == 0) 
         {
             waveEnded = true;
@@ -120,16 +129,17 @@ public class EnemySpawner : MonoBehaviour
 
     void GenerateEnemiesToSpawn()
     {
-        waveValue += waveCount * 3;
+        waveMoney += waveCount * 3;
 
-        while (waveValue > 0)
+        // "Buys" enemies and adds them to a list of enemies to spawn until no money is left
+        while (waveMoney > 0)
         {
             int enemyIndex = Random.Range(0, enemies.Count);
 
-            if (waveValue - enemies[enemyIndex].cost >= 0)
+            if (waveMoney - enemies[enemyIndex].cost >= 0)
             {
                 enemiesToSpawn.Add(enemies[enemyIndex].enemyPrefab);
-                waveValue -= enemies[enemyIndex].cost;
+                waveMoney -= enemies[enemyIndex].cost;
             }
         }
     }
@@ -146,6 +156,7 @@ public class EnemySpawner : MonoBehaviour
         spawnTimer = spawnRepeatRate;
     }
 
+    // Displays wave splash screen
     private IEnumerator DisplayWave()
     {
         waveText = waveSplashScreen.GetComponentInChildren<TMP_Text>();

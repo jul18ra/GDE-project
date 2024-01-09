@@ -26,14 +26,16 @@ public class Item
 
     protected int timesPurchased = 1;
 
-    protected float identifier;
-    public float Indentifier { get { return identifier; } }
+    protected float itemID;
+    public float ItemID { get { return itemID; } }
 
     public Item(float upgrade, int cost)
     {
         this.upgrade = upgrade;
         this.cost = cost;
     }
+
+    // Randomises a multiplier for the upgrade
     public virtual void RandomiseMultiplier()
     {
         multiplier = UnityEngine.Random.Range(0.05f, 0.20f);
@@ -67,7 +69,7 @@ public class DamageUpItem : Item
     public DamageUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
         description = $"Damage dealt increased by {descriptionMultiplier}";
-        identifier = 1;
+        itemID = 1;
     }
 
     public override void UpgradeStats()
@@ -97,7 +99,7 @@ public class FireRateUpItem : Item
     public FireRateUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
         description = $"Weapon fire rate increased by {descriptionMultiplier}";
-        identifier = 2;
+        itemID = 2;
     }
 
     public override void UpgradeStats()
@@ -126,7 +128,7 @@ public class HealthUpItem : Item
     public HealthUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
         description = $"Max health increased by {descriptionMultiplier}";
-        identifier = 3;
+        itemID = 3;
         startScaleX = 1;
     }
 
@@ -140,6 +142,8 @@ public class HealthUpItem : Item
 
         playerHealthScript.MaxHealth = upgrade;
         playerHealthScript.CurrentHealth = upgrade;
+
+        // Makes health bar larger
         Vector3 newScale = new Vector3((startScaleX += startScaleX * multiplier * 0.1f), 1, 1);
         healthBar.transform.localScale = newScale;
         startScaleX = newScale.x;
@@ -161,7 +165,7 @@ public class HpDropRateUpItem : Item
     public HpDropRateUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
         description = $"Teleport vial drop rate increased by {descriptionMultiplier}";
-        identifier = 4;
+        itemID = 4;
     }
     public override void UpgradeStats()
     {
@@ -190,7 +194,7 @@ public class TpDropRateUpItem : Item
     public TpDropRateUpItem(float upgrade, int cost) : base(upgrade, cost)
     {
         description = $"Health vial drop rate increased by {descriptionMultiplier}";
-        identifier = 5;
+        itemID = 5;
     }
     public override void UpgradeStats()
     {
@@ -219,7 +223,7 @@ public class TeleportUpItem : Item
     {
         multiplier = 1;
         description = "Increase teleport item slots by 1";
-        identifier = 6;
+        itemID = 6;
     }
 
     public override void UpgradeStats()
